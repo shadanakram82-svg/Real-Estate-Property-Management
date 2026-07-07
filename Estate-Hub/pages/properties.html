@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties | Estate Hub</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <style>
+    /* Inner Page Specific Styles */
+    .page-hero {
+      background-color: var(--secondary-color);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      color: #fff;
+    }
+    .page-hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    
+    .properties-layout {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+    }
+    
+    .filters-sidebar {
+      flex: 0 0 300px;
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      position: sticky;
+      top: 100px;
+    }
+    
+    .filter-group { margin-bottom: 1.5rem; }
+    .filter-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    .filter-group input, .filter-group select {
+      width: 100%; padding: 0.8rem; border-radius: 8px;
+      border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);
+    }
+    
+    .properties-list { flex: 1; }
+    .properties-header { display: flex; justify-content: space-between; margin-bottom: 1.5rem; align-items: center; }
+    
+    @media (max-width: 992px) {
+      .properties-layout { flex-direction: column; }
+      .filters-sidebar { width: 100%; flex: none; position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (Inner Page Style) -->
+  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="properties.html" class="nav-link">Properties</a></li>
+          <li><a href="agents.html" class="nav-link">Agents</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
+      <div class="nav-right">
+        <ul class="nav-menu" style="margin-right: 1rem;">
+           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
+           <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="fade-in-up">Find Your Dream Property</h1>
+      <p class="fade-in-up delay-100">Explore our comprehensive list of verified properties.</p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="properties-layout">
+        
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar fade-in-up delay-200">
+          <h3>Search & Filter</h3>
+          <hr style="border:0; border-top:1px solid var(--border-color); margin: 1rem 0;">
+          
+          <div class="filter-group">
+            <label>Keyword</label>
+            <input type="text" id="filter-keyword" placeholder="Search by name...">
+          </div>
+          <div class="filter-group">
+            <label>Location</label>
+            <input type="text" id="filter-location" placeholder="City or area...">
+          </div>
+          <div class="filter-group">
+            <label>Property Type</label>
+            <select id="filter-type">
+              <option value="">All Types</option>
+              <option value="Apartment">Apartment</option>
+              <option value="Villa">Villa</option>
+              <option value="Luxury Home">Luxury Home</option>
+              <option value="Office">Office</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Farm House">Farm House</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label>Max Price</label>
+            <input type="number" id="filter-price" placeholder="e.g. 500000">
+          </div>
+          <div class="filter-group">
+            <label>Bedrooms</label>
+            <select id="filter-beds">
+              <option value="">Any</option>
+              <option value="1">1+</option>
+              <option value="2">2+</option>
+              <option value="3">3+</option>
+              <option value="4">4+</option>
+            </select>
+          </div>
+          <button id="btn-apply-filters" class="btn-primary" style="width:100%; border-radius:8px;">Apply Filters</button>
+        </aside>
+
+        <!-- Properties List -->
+        <div class="properties-list">
+          <div class="properties-header fade-in-up delay-300">
+            <p><span id="results-count">0</span> Properties Found</p>
+            <div style="display:flex; align-items:center; gap:1rem;">
+              <div class="view-toggles" style="display:flex; gap:0.5rem;">
+                <button id="btn-grid-view" class="btn-icon active" style="color:var(--primary-color);" title="Grid View"><i class="fa-solid fa-border-all"></i></button>
+                <button id="btn-list-view" class="btn-icon" title="List View"><i class="fa-solid fa-list"></i></button>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <label>Sort By:</label>
+                <select id="sort-by" style="padding:0.5rem; border-radius:8px; background:var(--card-bg); color:var(--text-color); border:1px solid var(--border-color);">
+                  <option value="default">Default</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="property-grid" id="all-properties-grid">
+            <!-- Rendered via search.js -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/search.js"></script>
+</body>
+</html>

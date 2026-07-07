@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Estate Hub</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <style>
+    .page-hero {
+      background-color: var(--secondary-color);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      color: #fff;
+    }
+    
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    
+    .contact-info {
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+    }
+    
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .info-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-color);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    
+    .info-content h3 { color: var(--text-color); margin-bottom: 0.5rem; }
+    .info-content p { color: var(--text-light); }
+    
+    .contact-form-wrapper {
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+    }
+    
+    .form-group { margin-bottom: 1.5rem; }
+    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-color); }
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+    }
+    
+    .map-container {
+      margin-top: 4rem;
+      height: 400px;
+      background: #e2e8f0;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+      font-size: 1.2rem;
+    }
+    
+    @media (max-width: 768px) {
+      .contact-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="properties.html" class="nav-link">Properties</a></li>
+          <li><a href="agents.html" class="nav-link">Agents</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
+      <div class="nav-right">
+        <ul class="nav-menu" style="margin-right: 1rem;">
+           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
+           <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="fade-in-up">Contact Us</h1>
+      <p class="fade-in-up delay-100">Get in touch with our experts today</p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="contact-layout">
+        
+        <div class="contact-info fade-in-up delay-200">
+          <h2 style="margin-bottom: 2rem; color:var(--text-color);">Our Office</h2>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="info-content">
+              <h3>Address</h3>
+              <p>123 Real Estate Blvd<br>Beverly Hills, CA 90210</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
+            <div class="info-content">
+              <h3>Phone</h3>
+              <p>+1 (555) 123-4567<br>+1 (555) 987-6543</p>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div class="info-content">
+              <h3>Email</h3>
+              <p>info@estatehub.com<br>support@estatehub.com</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form-wrapper fade-in-up delay-300">
+          <h2 style="margin-bottom: 2rem; color:var(--text-color);">Send a Message</h2>
+          <form id="contact-form">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" required>
+            </div>
+            <div class="form-group">
+              <label>Email Address *</label>
+              <input type="email" required>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel">
+            </div>
+            <div class="form-group">
+              <label>Message *</label>
+              <textarea rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width:100%; border-radius:8px;">Send Message</button>
+          </form>
+        </div>
+        
+      </div>
+      
+      <div class="map-container fade-in-up delay-400">
+        <div>
+          <i class="fa-solid fa-map-location-dot" style="font-size: 3rem; margin-bottom:1rem; text-align:center; display:block;"></i>
+          Google Map Placeholder
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.getElementById('contact-form')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for contacting us! We will get back to you shortly.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>

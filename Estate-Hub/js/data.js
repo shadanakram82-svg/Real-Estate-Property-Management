@@ -1,0 +1,93 @@
+const propertiesData = [
+  {
+    id: 1,
+    title: "Modern Glass Villa",
+    type: "Villa",
+    price: 45000000,
+    location: "Bandra West, Mumbai",
+    bedrooms: 4,
+    bathrooms: 3,
+    area: 3200,
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
+    featured: true,
+    badge: "New"
+  },
+  {
+    id: 2,
+    title: "Skyline Luxury Apartment",
+    type: "Apartment",
+    price: 28000000,
+    location: "Connaught Place, Delhi",
+    bedrooms: 2,
+    bathrooms: 2,
+    area: 1500,
+    image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80",
+    featured: true,
+    badge: "Featured"
+  },
+  {
+    id: 3,
+    title: "Serene Farm House",
+    type: "Farm House",
+    price: 35000000,
+    location: "Lonavala, Maharashtra",
+    bedrooms: 5,
+    bathrooms: 4,
+    area: 5000,
+    image: "https://images.unsplash.com/photo-1505843513577-22bb7d21e455?w=800&q=80",
+    featured: true,
+    badge: "Sold"
+  },
+  {
+    id: 4,
+    title: "Premium Office Space",
+    type: "Office",
+    price: 85000000,
+    location: "Whitefield, Bangalore",
+    bedrooms: 0,
+    bathrooms: 4,
+    area: 8500,
+    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+    featured: true,
+    badge: ""
+  },
+  {
+    id: 5,
+    title: "Oceanfront Luxury Home",
+    type: "Luxury Home",
+    price: 95000000,
+    location: "Marine Drive, Mumbai",
+    bedrooms: 6,
+    bathrooms: 7,
+    area: 7200,
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
+    featured: true,
+    badge: "New"
+  },
+  {
+    id: 6,
+    title: "Suburban Family Villa",
+    type: "Villa",
+    price: 25000000,
+    location: "Koregaon Park, Pune",
+    bedrooms: 4,
+    bathrooms: 3,
+    area: 2800,
+    image: "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80",
+    featured: true,
+    badge: ""
+  },
+  {
+    id: 7,
+    title: "Prime Commercial Complex",
+    type: "Commercial",
+    price: 150000000,
+    location: "Cyber City, Gurgaon",
+    bedrooms: 0,
+    bathrooms: 8,
+    area: 12000,
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    featured: true,
+    badge: "Hot Deal"
+  }
+];

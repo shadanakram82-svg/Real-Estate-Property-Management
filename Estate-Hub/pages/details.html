@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Details | Estate Hub</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <style>
+    /* Details Page Specific */
+    .details-gallery {
+      height: 60vh;
+      min-height: 500px;
+      margin-top: 5rem;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+    
+    .details-layout {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+      margin-top: -80px; /* Overlap with gallery */
+      position: relative;
+      z-index: 10;
+    }
+    
+    .details-main {
+      flex: 1;
+      background: var(--card-bg);
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid var(--border-color);
+    }
+    
+    .details-sidebar {
+      flex: 0 0 350px;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      border: 1px solid var(--border-color);
+      position: sticky;
+      top: 100px;
+    }
+    
+    .details-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    
+    .details-price {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    
+    .details-info-bar {
+      display: flex;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+    
+    .details-info-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+    
+    .details-info-item i { color: var(--primary-color); font-size: 1.5rem; }
+    
+    .details-section { margin-bottom: 3rem; }
+    .details-section h3 { margin-bottom: 1.5rem; font-size: 1.5rem; color: var(--text-color); }
+    
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+    
+    .amenities-grid li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .amenities-grid li i { color: var(--accent-color); }
+    
+    .map-placeholder {
+      height: 300px;
+      background: #e2e8f0;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-light);
+    }
+    
+    /* Sidebar Agent Form */
+    .agent-card { text-align: center; margin-bottom: 2rem; }
+    .agent-card img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; }
+    
+    .contact-form .form-group { margin-bottom: 1rem; }
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+    }
+    
+    @media (max-width: 992px) {
+      .details-layout { flex-direction: column; }
+      .details-sidebar { width: 100%; flex: none; position: static; }
+      .details-info-bar { flex-wrap: wrap; }
+      .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 576px) {
+      .details-main { padding: 1.5rem; }
+      .amenities-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="properties.html" class="nav-link">Properties</a></li>
+          <li><a href="agents.html" class="nav-link">Agents</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
+      <div class="nav-right">
+        <ul class="nav-menu" style="margin-right: 1rem;">
+           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
+           <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Dynamic Gallery BG -->
+  <div class="details-gallery" id="property-gallery">
+    <!-- Image set via JS -->
+  </div>
+
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="container">
+      <div class="details-layout">
+        
+        <!-- Main Content -->
+        <div class="details-main fade-in-up delay-100">
+          <div class="details-header">
+            <div>
+              <span id="prop-type" class="property-type" style="position:static; display:inline-block; margin-bottom:1rem; background:var(--primary-color);">Type</span>
+              <h1 id="prop-title">Property Title</h1>
+              <p style="color: var(--text-light); font-size:1.1rem; margin-top:0.5rem;"><i class="fa-solid fa-location-dot"></i> <span id="prop-location">Location</span></p>
+            </div>
+            <div>
+              <div id="prop-price" class="details-price">$0</div>
+            </div>
+          </div>
+          
+          <div class="details-info-bar">
+            <div class="details-info-item"><i class="fa-solid fa-bed"></i> <span id="prop-beds">0</span> Bedrooms</div>
+            <div class="details-info-item"><i class="fa-solid fa-bath"></i> <span id="prop-baths">0</span> Bathrooms</div>
+            <div class="details-info-item"><i class="fa-solid fa-vector-square"></i> <span id="prop-area">0</span> sqft</div>
+            <div class="details-info-item"><i class="fa-solid fa-car"></i> 2 Garages</div>
+          </div>
+          
+          <div class="details-section">
+            <h3>Property Description</h3>
+            <p>Welcome to this stunning property perfectly situated in a prime location. This exceptional home offers modern living spaces, premium finishes, and breathtaking views. Experience luxury and comfort like never before with open-concept designs, state-of-the-art appliances, and expansive outdoor areas perfect for entertaining.</p>
+            <p style="margin-top: 1rem;">Whether you are looking for a peaceful retreat or a vibrant city lifestyle, this property caters to all your needs. Don't miss the opportunity to make this your new dream home.</p>
+          </div>
+          
+          <div class="details-section">
+            <h3>Amenities</h3>
+            <ul class="amenities-grid">
+              <li><i class="fa-solid fa-check"></i> Air Conditioning</li>
+              <li><i class="fa-solid fa-check"></i> Swimming Pool</li>
+              <li><i class="fa-solid fa-check"></i> Central Heating</li>
+              <li><i class="fa-solid fa-check"></i> Laundry Room</li>
+              <li><i class="fa-solid fa-check"></i> Gym</li>
+              <li><i class="fa-solid fa-check"></i> Window Coverings</li>
+            </ul>
+          </div>
+          
+          <div class="details-section">
+            <h3>Location Map</h3>
+            <div class="map-placeholder">
+              <i class="fa-solid fa-map-location-dot" style="font-size: 3rem; margin-bottom:1rem;"></i><br>
+              Google Map Integration Placeholder
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="details-sidebar fade-in-up delay-200">
+          <div class="agent-card">
+            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="Agent">
+            <h3>David Smith</h3>
+            <p style="color: var(--text-light);">Senior Property Agent</p>
+            <p style="margin: 1rem 0;"><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.9 (120 reviews)</p>
+          </div>
+          
+          <h4 style="margin-bottom: 1rem;">Contact Agent</h4>
+          <form class="contact-form">
+            <div class="form-group">
+              <input type="text" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" placeholder="Your Phone">
+            </div>
+            <div class="form-group">
+              <textarea rows="4" placeholder="I'm interested in this property..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; border-radius:8px;">Send Message</button>
+            <button type="button" class="btn-outline" style="width: 100%; margin-top: 1rem; color: var(--text-color); border-color: var(--border-color);">Book a Visit</button>
+          </form>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/details.js"></script>
+</body>
+</html>

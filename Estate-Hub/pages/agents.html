@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Agents | Estate Hub</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <style>
+    .page-hero {
+      background-color: var(--secondary-color);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      color: #fff;
+    }
+    
+    .agents-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .agent-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .agent-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+    
+    .agent-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    
+    .agent-info {
+      padding: 1.5rem;
+    }
+    
+    .agent-info h3 { color: var(--text-color); margin-bottom: 0.2rem; }
+    .agent-info p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; }
+    
+    .agent-stats {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+      font-weight: 500;
+    }
+    
+    .agent-stats i { color: var(--primary-color); margin-right: 0.3rem; }
+    
+    .agent-actions {
+      display: flex;
+      gap: 0.5rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="properties.html" class="nav-link">Properties</a></li>
+          <li><a href="agents.html" class="nav-link">Agents</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
+      <div class="nav-right">
+        <ul class="nav-menu" style="margin-right: 1rem;">
+           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
+           <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="fade-in-up">Meet Our Agents</h1>
+      <p class="fade-in-up delay-100">Professional realtors to help you find your dream home</p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div class="agents-grid">
+        
+        <div class="agent-card fade-in-up delay-200">
+          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="David Smith" class="agent-img">
+          <div class="agent-info">
+            <h3>David Smith</h3>
+            <p>Senior Property Agent</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-house"></i> 42 Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.9/5</span>
+            </div>
+            <div class="agent-actions">
+              <a href="#" class="btn-primary" style="flex:1; border-radius:8px; padding:0.5rem;"><i class="fa-solid fa-phone"></i> Call</a>
+              <a href="#" class="btn-outline" style="flex:1; border-radius:8px; padding:0.5rem; color:var(--text-color); border-color:var(--border-color);"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-card fade-in-up delay-300">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Sarah Johnson" class="agent-img">
+          <div class="agent-info">
+            <h3>Sarah Johnson</h3>
+            <p>Commercial Specialist</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-house"></i> 35 Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.8/5</span>
+            </div>
+            <div class="agent-actions">
+              <a href="#" class="btn-primary" style="flex:1; border-radius:8px; padding:0.5rem;"><i class="fa-solid fa-phone"></i> Call</a>
+              <a href="#" class="btn-outline" style="flex:1; border-radius:8px; padding:0.5rem; color:var(--text-color); border-color:var(--border-color);"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-card fade-in-up delay-400">
+          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="Michael Chen" class="agent-img">
+          <div class="agent-info">
+            <h3>Michael Chen</h3>
+            <p>Luxury Homes Expert</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-house"></i> 28 Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 5.0/5</span>
+            </div>
+            <div class="agent-actions">
+              <a href="#" class="btn-primary" style="flex:1; border-radius:8px; padding:0.5rem;"><i class="fa-solid fa-phone"></i> Call</a>
+              <a href="#" class="btn-outline" style="flex:1; border-radius:8px; padding:0.5rem; color:var(--text-color); border-color:var(--border-color);"><i class="fa-solid fa-envelope"></i> Email</a>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/theme.js"></script>
+  <script src="../js/app.js"></script>
+</body>
+</html>

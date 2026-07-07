@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compare Properties | Estate Hub</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <style>
+    .page-hero {
+      background-color: var(--secondary-color);
+      padding: 8rem 0 4rem;
+      text-align: center;
+      color: #fff;
+    }
+    .page-hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    
+    .compare-table-wrapper {
+      overflow-x: auto;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+    }
+    
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 800px;
+    }
+    
+    .compare-table th, .compare-table td {
+      padding: 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+    }
+    
+    .compare-table th:last-child, .compare-table td:last-child {
+      border-right: none;
+    }
+    
+    .compare-table th {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-weight: 600;
+      width: 20%;
+    }
+    
+    .compare-table td {
+      width: 26.66%;
+      color: var(--text-light);
+    }
+    
+    .compare-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+    
+    .highlight-best {
+      background-color: rgba(37, 99, 235, 0.05);
+      font-weight: 600;
+      color: var(--primary-color) !important;
+    }
+    
+    .remove-compare {
+      color: #ef4444;
+      cursor: pointer;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .remove-compare:hover { transform: scale(1.1); }
+    
+    .empty-state {
+      text-align: center;
+      padding: 5rem 0;
+      color: var(--text-light);
+    }
+    .empty-state i {
+      font-size: 4rem;
+      color: var(--border-color);
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="properties.html" class="nav-link">Properties</a></li>
+          <li><a href="agents.html" class="nav-link">Agents</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
+      <div class="nav-right">
+        <ul class="nav-menu" style="margin-right: 1rem;">
+           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
+           <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1 class="fade-in-up">Compare Properties</h1>
+      <p class="fade-in-up delay-100">Compare up to 3 properties side-by-side to find the best fit.</p>
+    </div>
+  </section>
+
+  <section class="section-padding">
+    <div class="container">
+      <div id="compare-container" class="fade-in-up delay-200">
+        <!-- Rendered via compare.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Custom Scripts -->
+  <script src="../js/data.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/app.js"></script>
+  <script src="../js/compare.js"></script>
+</body>
+</html>

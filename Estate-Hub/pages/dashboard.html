@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard | Estate Hub</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/responsive.css">
+  <link rel="stylesheet" href="../css/animation.css">
+  <style>
+    .dashboard-layout {
+      display: flex;
+      gap: 2rem;
+      align-items: flex-start;
+      margin-top: 100px; /* offset for fixed navbar */
+    }
+    
+    .dashboard-sidebar {
+      flex: 0 0 250px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem 1rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      position: sticky;
+      top: 100px;
+    }
+    
+    .user-profile {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .user-profile img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    
+    .dashboard-nav {
+      list-style: none;
+    }
+    
+    .dashboard-nav li a {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+    
+    .dashboard-nav li a:hover, .dashboard-nav li a.active {
+      background: rgba(37, 99, 235, 0.05);
+      color: var(--primary-color);
+    }
+    
+    .dashboard-nav li a i { width: 20px; }
+    
+    .dashboard-main {
+      flex: 1;
+    }
+    
+    .dashboard-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .dash-stat-card {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .dash-stat-card .icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 12px;
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .dash-stat-card h3 { font-size: 1.5rem; color: var(--text-color); margin-bottom: 0.2rem; }
+    .dash-stat-card p { color: var(--text-light); font-size: 0.9rem; }
+    
+    .dashboard-section {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      border: 1px solid var(--border-color);
+      margin-bottom: 2rem;
+    }
+    
+    .dashboard-section h2 {
+      margin-bottom: 1.5rem;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 1rem;
+    }
+    
+    .saved-search-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    @media (max-width: 992px) {
+      .dashboard-layout { flex-direction: column; }
+      .dashboard-sidebar { width: 100%; flex: none; position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="properties.html" class="nav-link">Properties</a></li>
+          <li><a href="agents.html" class="nav-link">Agents</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
+      <div class="nav-right">
+        <ul class="nav-menu" style="margin-right: 1rem;">
+           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
+           <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="container">
+      <div class="dashboard-layout">
+        
+        <aside class="dashboard-sidebar fade-in-up">
+          <div class="user-profile">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=2563EB&color=fff" alt="User">
+            <h3 style="color: var(--text-color);">John Doe</h3>
+            <p style="color: var(--text-light); font-size: 0.9rem;">john.doe@example.com</p>
+          </div>
+          <ul class="dashboard-nav">
+            <li><a href="dashboard.html" class="active"><i class="fa-solid fa-gauge"></i> Overview</a></li>
+            <li><a href="favorites.html"><i class="fa-regular fa-heart"></i> Favorites</a></li>
+            <li><a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a></li>
+            <li><a href="../index.html" style="color: #ef4444;"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+          </ul>
+        </aside>
+
+        <div class="dashboard-main">
+          
+          <div class="dashboard-stats fade-in-up delay-100">
+            <div class="dash-stat-card">
+              <div class="icon"><i class="fa-regular fa-heart"></i></div>
+              <div>
+                <h3 id="dash-fav-count">0</h3>
+                <p>Saved Properties</p>
+              </div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="icon" style="background: rgba(16, 185, 129, 0.1); color: #10B981;"><i class="fa-regular fa-eye"></i></div>
+              <div>
+                <h3 id="dash-recent-count">0</h3>
+                <p>Recently Viewed</p>
+              </div>
+            </div>
+            <div class="dash-stat-card">
+              <div class="icon" style="background: rgba(245, 158, 11, 0.1); color: #F59E0B;"><i class="fa-solid fa-magnifying-glass"></i></div>
+              <div>
+                <h3>3</h3>
+                <p>Saved Searches</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="dashboard-section fade-in-up delay-200">
+            <h2>Saved Searches</h2>
+            <div class="saved-search-item">
+              <div>
+                <h4 style="color: var(--text-color);">New York Apartments</h4>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Type: Apartment | Price: Under $800k</p>
+              </div>
+              <button class="btn-primary" style="padding: 0.5rem 1rem; border-radius: 6px;">Search Now</button>
+            </div>
+            <div class="saved-search-item">
+              <div>
+                <h4 style="color: var(--text-color);">Los Angeles Villas</h4>
+                <p style="color: var(--text-light); font-size: 0.9rem;">Type: Villa | Beds: 3+</p>
+              </div>
+              <button class="btn-primary" style="padding: 0.5rem 1rem; border-radius: 6px;">Search Now</button>
+            </div>
+          </div>
+          
+          <div class="dashboard-section fade-in-up delay-300">
+            <h2>Recently Viewed</h2>
+            <div class="property-grid" id="recently-viewed-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
+              <!-- Dynamically populated via JS -->
+            </div>
+          </div>
+
+        </div>
+        
+      </div>
+    </div>
+  </section>
+
+  <script src="../js/data.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/app.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const favorites = JSON.parse(localStorage.getItem('estate-favorites')) || [];
+      const favCount = document.getElementById('dash-fav-count');
+      if (favCount) {
+        favCount.textContent = favorites.length;
+      }
+      
+      const recentlyViewedIds = JSON.parse(localStorage.getItem('recently-viewed')) || [];
+      
+      // Update recently viewed count card
+      const recentlyViewedCountElement = document.getElementById('dash-recent-count');
+      if(recentlyViewedCountElement) {
+         recentlyViewedCountElement.textContent = recentlyViewedIds.length;
+      }
+      
+      const recentlyViewedGrid = document.getElementById('recently-viewed-grid');
+      if (recentlyViewedGrid && typeof propertiesData !== 'undefined') {
+        if (recentlyViewedIds.length === 0) {
+          recentlyViewedGrid.innerHTML = '<p style="grid-column: 1/-1; padding: 1rem;">You haven\\'t viewed any properties yet.</p>';
+        } else {
+          let html = '';
+          recentlyViewedIds.forEach(id => {
+            const prop = propertiesData.find(p => p.id == id);
+            if (prop) {
+              html += `
+                <div class="property-card">
+                  <div class="property-img-wrapper" style="height: 180px;">
+                    <span class="property-type">${prop.type}</span>
+                    <img src="${prop.image}" alt="${prop.title}">
+                  </div>
+                  <div class="property-content" style="padding: 1rem;">
+                    <h3 style="font-size: 1.1rem; margin-bottom: 0.5rem;">${prop.title}</h3>
+                    <div style="color: var(--primary-color); font-weight: 600;">₹${(prop.price/100000).toLocaleString('en-IN')} Lakhs</div>
+                    <a href="details.html?id=${prop.id}" class="btn-primary" style="display:inline-block; margin-top:0.5rem; padding: 0.3rem 0.8rem; font-size: 0.9rem;">View Again</a>
+                  </div>
+                </div>
+              `;
+            }
+          });
+          recentlyViewedGrid.innerHTML = html;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
