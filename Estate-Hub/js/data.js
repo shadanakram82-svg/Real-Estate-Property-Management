@@ -21,7 +21,9 @@ const propertiesData = [
     agentImage: "../assets/images/agents/agent1.png",
     availability: "Ready to Move",
     parking: "3 Cars",
-    status: "Available"
+    status: "Available",
+    youtubeId: "8oHyqO2JRFw",
+    videoPoster: "../assets/images/properties/pano_villa.png"
   },
   {
     id: 2,
@@ -45,7 +47,9 @@ const propertiesData = [
     agentImage: "../assets/images/agents/agent2.png",
     availability: "Ready to Move",
     parking: "1 Car",
-    status: "Available"
+    status: "Available",
+    youtubeId: "YswudqKTiaI",
+    videoPoster: "../assets/images/properties/pano_apt.png"
   },
   {
     id: 3,
@@ -69,7 +73,9 @@ const propertiesData = [
     agentImage: "../assets/images/agents/agent3.png",
     availability: "Unavailable",
     parking: "4 Cars",
-    status: "Sold"
+    status: "Sold",
+    youtubeId: "bjFqRoJ-r94",
+    videoPoster: "../assets/images/properties/pano_farm.png"
   },
   {
     id: 4,
@@ -93,7 +99,9 @@ const propertiesData = [
     agentImage: "../assets/images/agents/agent1.png",
     availability: "Ready to Fit-out",
     parking: "10 Cars",
-    status: "Available"
+    status: "Available",
+    youtubeId: "Ym8Ty9tDQSs",
+    videoPoster: "../assets/images/properties/pano_office.png"
   },
   {
     id: 5,
@@ -117,7 +125,9 @@ const propertiesData = [
     agentImage: "../assets/images/agents/agent2.png",
     availability: "Under Construction",
     parking: "5 Cars",
-    status: "Available"
+    status: "Available",
+    youtubeId: "NFe7x0DW6nM",
+    videoPoster: "../assets/images/properties/oceanfront.png"
   },
   {
     id: 6,
@@ -141,7 +151,9 @@ const propertiesData = [
     agentImage: "../assets/images/agents/agent3.png",
     availability: "Ready to Move",
     parking: "2 Cars",
-    status: "Available"
+    status: "Available",
+    youtubeId: "SCw6ixhizg4",
+    videoPoster: "../assets/images/properties/pano_farm.png"
   },
   {
     id: 7,
@@ -165,6 +177,8 @@ const propertiesData = [
     agentImage: "../assets/images/agents/agent1.png",
     availability: "Ready to Move",
     parking: "50+ Cars",
-    status: "Available"
+    status: "Available",
+    youtubeId: "iJb8P2fD15E",
+    videoPoster: "../assets/images/properties/pano_office.png"
   }
 ];

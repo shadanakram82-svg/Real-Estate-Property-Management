@@ -35,13 +35,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const area = document.getElementById('prop-area');
 
   if (gallery) {
-    // Optimize the Unsplash URL for much faster loading (w=1920 instead of 2560, q=80 instead of 100)
-    // The auto=format parameter already ensures it serves as WebP on modern browsers.
-    let optimizedImage = property.image;
-    if (optimizedImage.includes('unsplash.com')) {
-      optimizedImage = optimizedImage.replace('w=2560', 'w=1920').replace('q=100', 'q=80');
-    }
-    gallery.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%), url('${optimizedImage}')`;
+    const img = new Image();
+    img.src = property.image;
+    img.onload = () => {
+      gallery.style.backgroundImage = `linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%), url('${property.image}')`;
+      gallery.style.opacity = '1';
+      gallery.classList.add('slide-down-hero');
+    };
   }
   if (title) title.textContent = property.title;
   if (price) price.textContent = `$${property.price.toLocaleString()}`;
@@ -116,6 +116,32 @@ document.addEventListener('DOMContentLoaded', () => {
         agentImg.src = property.agentImage;
       }
     }
+  }
+
+  // Update 360 Video Tour
+  const videoContainer = document.getElementById('tour-container');
+  if (videoContainer) {
+    const posterEl = document.getElementById('tour-poster');
+    if (posterEl && property.videoPoster) {
+      posterEl.src = property.videoPoster;
+    }
+    
+    window.start360Tour = function() {
+      // Hide the initial static poster and overlay
+      document.getElementById('tour-poster').style.display = 'none';
+      document.getElementById('tour-overlay').style.display = 'none';
+      
+      // Initialize the Pannellum 360 viewer using the AI panoramic image
+      pannellum.viewer('tour-container', {
+        "type": "equirectangular",
+        "panorama": property.videoPoster,
+        "autoLoad": true,
+        "autoRotate": -2,
+        "compass": true,
+        "showFullscreenCtrl": true,
+        "mouseZoom": true
+      });
+    };
   }
 
   // Wire up Action Buttons
