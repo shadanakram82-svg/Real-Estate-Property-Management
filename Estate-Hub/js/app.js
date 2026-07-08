@@ -153,8 +153,8 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <div class="property-footer">
               <div style="display:flex; gap:0.5rem;">
-                <button class="btn-icon" title="Add to Favorites"><i class="fa-regular fa-heart"></i></button>
-                <button class="btn-icon" title="Compare"><i class="fa-solid fa-code-compare"></i></button>
+                <button class="btn-icon btn-fav" data-id="${prop.id}" title="Add to Favorites"><i class="fa-regular fa-heart"></i></button>
+                <button class="btn-icon btn-compare" data-id="${prop.id}" title="Compare"><i class="fa-solid fa-code-compare"></i></button>
               </div>
               <a href="pages/details.html?id=${prop.id}" class="btn-details">View Details</a>
             </div>
@@ -208,6 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
           showToast('Added to Favorites');
         }
         localStorage.setItem('estate-favorites', JSON.stringify(favorites));
+        updateFavBadgeCount();
       }
     }
 
@@ -217,18 +218,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const propId = compareBtn.getAttribute('data-id');
       if (propId) {
         let compare = JSON.parse(localStorage.getItem('estate-compare')) || [];
-        if (compare.includes(propId)) {
-          compare = compare.filter(id => id !== propId);
-          showToast('Removed from Compare list');
-        } else {
+        if (!compare.includes(propId)) {
           if (compare.length >= 3) {
-            showToast('You can only compare up to 3 properties.');
-          } else {
-            compare.push(propId);
-            showToast('Added to Compare list');
+            showToast('You can only compare up to 3 properties at a time.');
+            return;
           }
+          compare.push(propId);
+          localStorage.setItem('estate-compare', JSON.stringify(compare));
         }
-        localStorage.setItem('estate-compare', JSON.stringify(compare));
+        
+        // Redirect to compare page (handle path difference depending on current page)
+        if (window.location.pathname.includes('/pages/')) {
+          window.location.href = 'compare.html';
+        } else {
+          window.location.href = 'pages/compare.html';
+        }
       }
     }
   });
@@ -241,6 +245,26 @@ document.addEventListener('DOMContentLoaded', () => {
       const id = btn.getAttribute('data-id');
       if (favorites.includes(id)) {
         btn.querySelector('i').classList.replace('fa-regular', 'fa-solid');
+      }
+    });
+    updateFavBadgeCount();
+  }
+  
+  // --- FAQ Accordion Logic removed as it is now pure CSS hover driven ---
+  
+  // --- Update Fav Badge Count ---
+  function updateFavBadgeCount() {
+    const favorites = JSON.parse(localStorage.getItem('estate-favorites')) || [];
+    const badges = document.querySelectorAll('.fav-count-badge');
+    badges.forEach(badge => {
+      badge.textContent = favorites.length;
+      badge.classList.remove('bump');
+      void badge.offsetWidth; // Trigger reflow for animation
+      badge.classList.add('bump');
+      if (favorites.length === 0) {
+        badge.style.display = 'none';
+      } else {
+        badge.style.display = 'flex';
       }
     });
   }

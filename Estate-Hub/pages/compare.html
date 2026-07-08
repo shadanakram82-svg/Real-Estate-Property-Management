@@ -11,33 +11,55 @@
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/animation.css">
   <style>
+    body {
+      background-color: var(--bg-color);
+      position: relative;
+    }
     .page-hero {
-      background-color: var(--secondary-color);
-      padding: 8rem 0 4rem;
+      background-image: linear-gradient(rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.7)), url('../assets/images/compare-bg.png');
+      background-position: center;
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      padding: 10rem 0 8rem;
       text-align: center;
       color: #fff;
     }
-    .page-hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
+    .page-hero h1 { 
+      font-size: 3.5rem; 
+      margin-bottom: 1rem; 
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
     
+    #compare-container {
+      margin-top: -100px;
+      position: relative;
+      z-index: 10;
+    }
+
     .compare-table-wrapper {
       overflow-x: auto;
-      background: var(--card-bg);
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      border: 1px solid var(--border-color);
+      background: #1e293b;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
     
     .compare-table {
       width: 100%;
-      border-collapse: collapse;
-      min-width: 800px;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 900px;
     }
     
     .compare-table th, .compare-table td {
-      padding: 1.5rem;
+      padding: 1.2rem 1rem;
       text-align: center;
-      border-bottom: 1px solid var(--border-color);
-      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-right: 1px solid rgba(255, 255, 255, 0.08);
+      transition: background-color 0.3s ease;
+      color: #f1f5f9;
     }
     
     .compare-table th:last-child, .compare-table td:last-child {
@@ -45,15 +67,19 @@
     }
     
     .compare-table th {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      font-weight: 600;
+      background-color: #0f172a;
+      color: #ffffff;
+      font-weight: 700;
       width: 20%;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
     }
-    
+
     .compare-table td {
       width: 26.66%;
-      color: var(--text-light);
+      color: #cbd5e1;
     }
     
     .compare-img {
@@ -62,25 +88,24 @@
       object-fit: cover;
       border-radius: 12px;
       margin-bottom: 1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .compare-img:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
     }
     
     .highlight-best {
-      background-color: rgba(37, 99, 235, 0.05);
+      background-color: rgba(16, 185, 129, 0.1) !important;
       font-weight: 600;
-      color: var(--primary-color) !important;
+      color: #10b981 !important;
     }
-    
-    .remove-compare {
-      color: #ef4444;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-size: 1.2rem;
-      margin-top: 1rem;
-      transition: transform 0.3s ease;
+    .highlight-best {
+      background-color: rgba(16, 185, 129, 0.1) !important;
+      font-weight: 600;
+      color: #10b981 !important;
     }
-    
-    .remove-compare:hover { transform: scale(1.1); }
     
     .empty-state {
       text-align: center;
@@ -92,12 +117,91 @@
       color: var(--border-color);
       margin-bottom: 1rem;
     }
+
+    /* Auto Scroll Marquee */
+    .compare-testimonials {
+      background-color: var(--bg-color); 
+      border-top: 1px solid var(--border-color); 
+      overflow: hidden;
+      padding: 2rem 0 4rem 0;
+    }
+    .marquee-container {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    .marquee-container::before, .marquee-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 15%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .marquee-container::before {
+      left: 0;
+      background: linear-gradient(to right, var(--bg-color) 0%, transparent 100%);
+    }
+    .marquee-container::after {
+      right: 0;
+      background: linear-gradient(to left, var(--bg-color) 0%, transparent 100%);
+    }
+    .marquee-track {
+      display: inline-flex;
+      gap: 2rem;
+      padding: 1rem;
+      animation: scroll 30s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(calc(-50% - 1rem)); }
+    }
+    .marquee-container .testimonial-card {
+      width: 420px;
+      height: 320px;
+      flex-shrink: 0;
+      white-space: normal;
+      position: relative !important;
+      top: auto !important;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .marquee-container .testimonial-overlay {
+      background-color: rgba(15, 23, 42, 0.85) !important;
+      padding: 2rem !important;
+    }
+    .marquee-container .testimonial-stars {
+      margin-bottom: 1rem !important;
+      font-size: 1rem !important;
+    }
+    .marquee-container .testimonial-text {
+      font-size: 1.05rem !important;
+      margin-bottom: 1rem !important;
+      line-height: 1.5 !important;
+    }
+    .marquee-container .testimonial-author img {
+      width: 50px !important;
+      height: 50px !important;
+    }
+    .marquee-container .testimonial-author {
+      gap: 0.5rem !important;
+    }
+    .marquee-container .testimonial-author h4 {
+      font-size: 0.95rem !important;
+    }
+    .marquee-container .testimonial-author p {
+      font-size: 0.85rem !important;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+<!-- Navbar -->
+  <div class="navbar-wrapper" style="position: fixed; top: 0; background: transparent; z-index: 1000;">
     <nav class="navbar">
       <div class="nav-left">
         <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
@@ -116,7 +220,10 @@
         </ul>
         <div class="nav-actions">
           <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
+              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+              <span class="fav-count-badge">0</span>
+            </a>
           <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
         </div>
       </div>
@@ -126,17 +233,137 @@
   <section class="page-hero">
     <div class="container">
       <h1 class="fade-in-up">Compare Properties</h1>
-      <p class="fade-in-up delay-100">Compare up to 3 properties side-by-side to find the best fit.</p>
+      <p class="fade-in-up delay-100" style="font-size: 1.1rem; opacity: 0.9; max-width: 600px; margin: 1rem auto 0; text-shadow: 0 2px 4px rgba(0,0,0,0.5);">Analyze and compare your shortlisted properties side-by-side to make the best real estate decision.</p>
     </div>
   </section>
 
-  <section class="section-padding">
+  <section class="section-padding" style="position: relative; z-index: 1; padding-top: 8rem; padding-bottom: 2rem;">
     <div class="container">
       <div id="compare-container" class="fade-in-up delay-200">
         <!-- Rendered via compare.js -->
       </div>
     </div>
   </section>
+
+  <!-- Auto Scroll Testimonials -->
+  <section class="compare-testimonials">
+    <div class="container" style="text-align: center; margin-bottom: 2rem;">
+      <h2 class="fade-in-up" style="color: var(--text-color); font-size: 2.5rem; margin-bottom: 0.5rem;">What Users Say</h2>
+      <p class="fade-in-up delay-100" style="color: var(--text-light); font-size: 1.1rem;">See how Estate Hub is helping buyers make better decisions.</p>
+    </div>
+    <div class="marquee-container">
+      <div class="marquee-track">
+        <!-- Card 1 -->
+        <div class="testimonial-card">
+          <img src="../assets/images/properties/img_59753e8d.jpg" alt="Beautiful Home" class="testimonial-bg">
+          <div class="testimonial-overlay">
+            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="testimonial-text">"Estate Hub made finding my dream home an absolute breeze. Their team was professional, and the verified listings gave me complete peace of mind."</p>
+            <div class="testimonial-author"><img src="../assets/images/gallery/img_e3011561.jpg" alt="Priya Sharma"><div><h4>Priya Sharma</h4><p>Homeowner</p></div></div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="testimonial-card">
+          <img src="../assets/images/properties/img_72a2bcb3.jpg" alt="Mansion" class="testimonial-bg">
+          <div class="testimonial-overlay">
+            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <p class="testimonial-text">"The Best Price Guarantee is real! I compared properties across multiple platforms, but Estate Hub offered the best deals."</p>
+            <div class="testimonial-author"><img src="../assets/images/gallery/img_9080ffdf.jpg" alt="Rahul Desai"><div><h4>Rahul Desai</h4><p>Investor</p></div></div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="testimonial-card">
+          <img src="../assets/images/gallery/img_ca9a6d6f.jpg" alt="Modern Villa" class="testimonial-bg">
+          <div class="testimonial-overlay">
+            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="testimonial-text">"I sold my villa through Estate Hub and the process was incredibly smooth. Highly recommended!"</p>
+            <div class="testimonial-author"><img src="../assets/images/gallery/img_6f520af9.jpg" alt="Anjali Verma"><div><h4>Anjali Verma</h4><p>Seller</p></div></div>
+          </div>
+        </div>
+        <!-- Card 1 Duplicated -->
+        <div class="testimonial-card">
+          <img src="../assets/images/properties/img_59753e8d.jpg" alt="Beautiful Home" class="testimonial-bg">
+          <div class="testimonial-overlay">
+            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="testimonial-text">"Estate Hub made finding my dream home an absolute breeze. Their team was professional, and the verified listings gave me complete peace of mind."</p>
+            <div class="testimonial-author"><img src="../assets/images/gallery/img_e3011561.jpg" alt="Priya Sharma"><div><h4>Priya Sharma</h4><p>Homeowner</p></div></div>
+          </div>
+        </div>
+        <!-- Card 2 Duplicated -->
+        <div class="testimonial-card">
+          <img src="../assets/images/properties/img_72a2bcb3.jpg" alt="Mansion" class="testimonial-bg">
+          <div class="testimonial-overlay">
+            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            <p class="testimonial-text">"The Best Price Guarantee is real! I compared properties across multiple platforms, but Estate Hub offered the best deals."</p>
+            <div class="testimonial-author"><img src="../assets/images/gallery/img_9080ffdf.jpg" alt="Rahul Desai"><div><h4>Rahul Desai</h4><p>Investor</p></div></div>
+          </div>
+        </div>
+        <!-- Card 3 Duplicated -->
+        <div class="testimonial-card">
+          <img src="../assets/images/gallery/img_ca9a6d6f.jpg" alt="Modern Villa" class="testimonial-bg">
+          <div class="testimonial-overlay">
+            <div class="testimonial-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            <p class="testimonial-text">"I sold my villa through Estate Hub and the process was incredibly smooth. Highly recommended!"</p>
+            <div class="testimonial-author"><img src="../assets/images/gallery/img_6f520af9.jpg" alt="Anjali Verma"><div><h4>Anjali Verma</h4><p>Seller</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="../index.html" class="footer-brand">
+            Estate Hub<span>&trade;</span>
+          </a>
+          <p><strong>Estate Hub</strong> is your premier partner in finding the perfect property. We make real estate simple, transparent, and secure.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="mortgage.html">Mortgage Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot"></i> Andheri West, Mumbai, MH</li>
+            <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fa-solid fa-envelope"></i> hello@estatehub.in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Estate Hub. All rights reserved.</p>
+      </div>
+    </div>
+    
+    <!-- Massive Watermark for Product Name -->
+    <div class="footer-watermark">
+      ESTATE HUB
+    </div>
+  </footer>
 
   <!-- Custom Scripts -->
   <script src="../js/data.js"></script>

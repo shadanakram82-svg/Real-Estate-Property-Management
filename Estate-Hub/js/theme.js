@@ -33,4 +33,12 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // Update Global Favorites Counter
+  const favs = JSON.parse(localStorage.getItem('estate-favorites') || '[]');
+  document.querySelectorAll('.fav-count-badge').forEach(badge => {
+    badge.textContent = favs.length;
+    // Only show badge if count is greater than 0
+    badge.style.display = favs.length > 0 ? 'flex' : 'none';
+  });
 });

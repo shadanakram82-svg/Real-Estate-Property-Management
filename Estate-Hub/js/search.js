@@ -54,14 +54,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnGrid && btnList) {
     btnGrid.addEventListener('click', () => {
       grid.classList.remove('list-view');
-      btnGrid.style.color = 'var(--primary-color)';
-      btnList.style.color = 'var(--text-color)';
+      btnGrid.classList.add('active');
+      btnList.classList.remove('active');
     });
     
     btnList.addEventListener('click', () => {
       grid.classList.add('list-view');
-      btnList.style.color = 'var(--primary-color)';
-      btnGrid.style.color = 'var(--text-color)';
+      btnList.classList.add('active');
+      btnGrid.classList.remove('active');
     });
   }
 
@@ -138,5 +138,60 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     renderProperties(filtered);
+    
+    // Enable save button if a search was actually performed
+    const btnSaveSearch = document.getElementById('btn-save-search');
+    if (btnSaveSearch && (keyword || location || type || maxPrice || minBeds)) {
+      btnSaveSearch.disabled = false;
+      btnSaveSearch.style.opacity = '1';
+      btnSaveSearch.style.pointerEvents = 'auto';
+    } else if (btnSaveSearch) {
+      btnSaveSearch.disabled = true;
+      btnSaveSearch.style.opacity = '0.5';
+      btnSaveSearch.style.pointerEvents = 'none';
+    }
+  }
+
+  // Save Search functionality
+  const btnSaveSearch = document.getElementById('btn-save-search');
+  if (btnSaveSearch) {
+    btnSaveSearch.addEventListener('click', () => {
+      const keyword = document.getElementById('filter-keyword').value;
+      const location = document.getElementById('filter-location').value;
+      const type = document.getElementById('filter-type').value;
+      const maxPrice = document.getElementById('filter-price').value;
+      const minBeds = document.getElementById('filter-beds').value;
+      const resultsCount = parseInt(document.getElementById('results-count').textContent) || 0;
+      
+      let searchName = type || location || keyword || 'Custom Search';
+      if (type && location) searchName = `${type} in ${location}`;
+      else if (type) searchName = `${type}s`;
+      
+      let tags = [];
+      if (type) tags.push(type);
+      if (location) tags.push(location);
+      if (maxPrice) tags.push('Under ₹' + (maxPrice.length > 5 ? (maxPrice/100000) + 'L' : maxPrice));
+      if (minBeds) tags.push(minBeds + '+ Beds');
+      
+      if (tags.length === 0) tags.push('All Properties');
+
+      const newSearch = {
+        name: searchName,
+        tags: tags,
+        date: 'Just now',
+        results: resultsCount
+      };
+
+      const savedSearches = JSON.parse(localStorage.getItem('estate-saved-searches')) || [];
+      savedSearches.unshift(newSearch);
+      localStorage.setItem('estate-saved-searches', JSON.stringify(savedSearches));
+      
+      // Visual feedback
+      const originalText = btnSaveSearch.innerHTML;
+      btnSaveSearch.innerHTML = '<i class="fa-solid fa-check" style="color: #10b981;"></i> Saved';
+      setTimeout(() => {
+        btnSaveSearch.innerHTML = originalText;
+      }, 2000);
+    });
   }
 });

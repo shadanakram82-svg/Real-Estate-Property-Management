@@ -11,31 +11,302 @@
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/animation.css">
   <style>
-    .page-hero {
-      background-color: var(--secondary-color);
-      padding: 8rem 0 4rem;
+    /* --- Hero --- */
+    .fav-hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+      padding: 8rem 0 5rem;
       text-align: center;
       color: #fff;
+      position: relative;
+      overflow: hidden;
     }
-    .page-hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    
+    .fav-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 60%, rgba(37,99,235,0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(59,130,246,0.1) 0%, transparent 50%);
+      animation: heroFloat 15s ease-in-out infinite;
+    }
+    @keyframes heroFloat {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-2%, 2%); }
+    }
+    .fav-hero .container { position: relative; z-index: 2; }
+    .fav-hero h1 { font-size: 3.2rem; margin-bottom: 0.5rem; text-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+    .fav-hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; }
+
+    /* --- Dashboard Stats --- */
+    .dashboard-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: -3rem;
+      position: relative;
+      z-index: 10;
+    }
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 1.8rem;
+      text-align: left;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 140px;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(37, 99, 235, 0.1), 0 10px 10px -5px rgba(37, 99, 235, 0.04);
+      border-color: var(--primary-color);
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--primary-color);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .stat-card:hover::before {
+      opacity: 1;
+    }
+    .stat-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    .stat-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .stat-icon.red { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .stat-icon.blue { background: rgba(37,99,235,0.1); color: #2563eb; }
+    .stat-icon.green { background: rgba(16,185,129,0.1); color: #10b981; }
+    .stat-icon.purple { background: rgba(139,92,246,0.1); color: #8b5cf6; }
+    .dash-stat-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--text-color);
+      line-height: 1;
+      letter-spacing: -1px;
+    }
+    .stat-label {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+      padding-top: 0.5rem;
+    }
+
+    /* --- Section Headers --- */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .section-header h2 {
+      font-size: 1.8rem;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .section-header h2 i {
+      color: var(--primary-color);
+      font-size: 1.4rem;
+    }
+
+    /* --- Empty State --- */
     .empty-state {
       text-align: center;
-      padding: 5rem 0;
+      padding: 4rem 2rem;
       color: var(--text-light);
+      background: var(--card-bg);
+      border: 2px dashed var(--border-color);
+      border-radius: 20px;
     }
-    
     .empty-state i {
-      font-size: 4rem;
+      font-size: 3.5rem;
       color: var(--border-color);
       margin-bottom: 1rem;
+    }
+
+    /* --- Recently Viewed (Horizontal Scroll) --- */
+    .recent-scroll {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      padding-bottom: 1rem;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .recent-scroll::-webkit-scrollbar { height: 6px; }
+    .recent-scroll::-webkit-scrollbar-track { background: transparent; }
+    .recent-scroll::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
+
+    .recent-card {
+      flex: 0 0 280px;
+      scroll-snap-align: start;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .recent-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(37,99,235,0.12);
+      border-color: var(--primary-color);
+    }
+    .recent-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .recent-card-body {
+      padding: 1.2rem;
+    }
+    .recent-card-body h4 {
+      color: var(--text-color);
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .recent-card-body .rc-location {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .recent-card-body .rc-price {
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    /* --- Saved Searches --- */
+    .searches-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .search-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.8rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .search-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      border-radius: 4px 0 0 4px;
+      background: var(--primary-color);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    .search-card:hover::before {
+      transform: scaleY(1);
+    }
+    .search-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(37,99,235,0.1);
+      border-color: var(--primary-color);
+    }
+    .search-card-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .search-card-title i { color: var(--primary-color); }
+    .search-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .search-tag {
+      background: rgba(37,99,235,0.08);
+      color: var(--primary-color);
+      padding: 0.35rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    .search-card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+    .search-card-meta .btn-search-again {
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .search-card-meta .btn-search-again:hover {
+      box-shadow: 0 4px 15px rgba(37,99,235,0.4);
+      transform: translateY(-1px);
+    }
+
+    /* CTA Buttons are now global in style.css */
+
+    /* --- Responsive --- */
+    @media (max-width: 768px) {
+      .dashboard-stats { grid-template-columns: repeat(2, 1fr); }
+      .fav-hero h1 { font-size: 2.2rem; }
+      .searches-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .dashboard-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+<!-- Navbar -->
+  <div class="navbar-wrapper" style="position: fixed; top: 0; background: transparent; z-index: 1000;">
     <nav class="navbar">
       <div class="nav-left">
         <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
@@ -54,32 +325,161 @@
         </ul>
         <div class="nav-actions">
           <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
+              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+              <span class="fav-count-badge">0</span>
+            </a>
           <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
         </div>
       </div>
     </nav>
   </div>
 
-  <section class="page-hero">
+  <!-- Hero -->
+  <section class="fav-hero">
     <div class="container">
-      <h1 class="fade-in-up">Your Favorites</h1>
-      <p class="fade-in-up delay-100">Properties you have saved for later.</p>
+      <h1 class="fade-in-up"><i class="fa-solid fa-heart" style="color: #ef4444;"></i> Your Favorites</h1>
+      <p class="fade-in-up delay-100">All your saved properties, recent activity, and searches — in one place.</p>
     </div>
   </section>
 
-  <section class="section-padding">
+  <!-- Dashboard Stats -->
+  <section style="padding: 0 0 3rem;">
     <div class="container">
-      <div class="properties-header" style="display:flex; justify-content:space-between; margin-bottom:2rem;">
-        <h3><span id="fav-count">0</span> Saved Properties</h3>
-        <button id="btn-clear-favs" class="btn-outline" style="color:var(--text-color); border-color:var(--border-color);">Clear All</button>
-      </div>
-      
-      <div class="property-grid" id="favorites-grid">
-        <!-- Rendered via favorites.js -->
+      <div class="dashboard-stats fade-in-up delay-200">
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-label">Saved<br>Properties</div>
+            <div class="stat-icon red"><i class="fa-solid fa-heart"></i></div>
+          </div>
+          <div class="dash-stat-number" id="stat-favs">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-label">Recently<br>Viewed</div>
+            <div class="stat-icon blue"><i class="fa-solid fa-eye"></i></div>
+          </div>
+          <div class="dash-stat-number" id="stat-viewed">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-label">Saved<br>Searches</div>
+            <div class="stat-icon green"><i class="fa-solid fa-magnifying-glass"></i></div>
+          </div>
+          <div class="dash-stat-number" id="stat-searches">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card-header">
+            <div class="stat-label">Properties<br>In Compare</div>
+            <div class="stat-icon purple"><i class="fa-solid fa-scale-balanced"></i></div>
+          </div>
+          <div class="dash-stat-number" id="stat-compare">0</div>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- Favorite Properties Section -->
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2><i class="fa-solid fa-heart" style="color: #ef4444;"></i> Favorite Properties</h2>
+        <button id="btn-clear-favs" class="cta-btn-danger"><i class="fa-solid fa-trash-can"></i> Clear All</button>
+      </div>
+      <div class="property-grid" id="favorites-grid">
+        <!-- Rendered via favorites.js -->
+      </div>
+      <div class="cta-row fade-in-up">
+        <a href="properties.html" class="cta-btn"><i class="fa-solid fa-plus"></i> Add More Properties <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recently Viewed Section -->
+  <section class="section-padding" style="background: var(--bg-color); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2><i class="fa-solid fa-clock-rotate-left"></i> Recently Viewed</h2>
+        <button id="btn-clear-recent" class="cta-btn-danger"><i class="fa-solid fa-trash-can"></i> Clear All</button>
+      </div>
+      <div class="recent-scroll fade-in-up delay-100" id="recent-scroll">
+        <!-- Rendered via favorites.js -->
+      </div>
+      <div class="cta-row fade-in-up">
+        <a href="properties.html" class="cta-btn"><i class="fa-solid fa-compass"></i> Browse Properties <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Saved Searches Section -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header fade-in-up">
+        <h2><i class="fa-solid fa-bookmark"></i> Saved Searches</h2>
+        <button id="btn-clear-searches" class="cta-btn-danger"><i class="fa-solid fa-trash-can"></i> Clear All</button>
+      </div>
+      <div class="searches-grid fade-in-up delay-100" id="searches-grid">
+        <!-- Rendered via favorites.js -->
+      </div>
+      <div class="cta-row fade-in-up">
+        <a href="properties.html" class="cta-btn"><i class="fa-solid fa-magnifying-glass"></i> Create New Search <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="../index.html" class="footer-brand">
+            Estate Hub<span>&trade;</span>
+          </a>
+          <p><strong>Estate Hub</strong> is your premier partner in finding the perfect property. We make real estate simple, transparent, and secure.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="mortgage.html">Mortgage Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot"></i> Andheri West, Mumbai, MH</li>
+            <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fa-solid fa-envelope"></i> hello@estatehub.in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Estate Hub. All rights reserved.</p>
+      </div>
+    </div>
+    
+    <!-- Massive Watermark for Product Name -->
+    <div class="footer-watermark">
+      ESTATE HUB
+    </div>
+  </footer>
 
   <!-- Custom Scripts -->
   <script src="../js/data.js"></script>

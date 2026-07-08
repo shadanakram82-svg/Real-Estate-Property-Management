@@ -73,7 +73,7 @@
 </head>
 <body>
 
-  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+  <div class="navbar-wrapper" style="position: fixed; top: 0; background: transparent; z-index: 1000;">
     <nav class="navbar">
       <div class="nav-left">
         <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
@@ -92,7 +92,10 @@
         </ul>
         <div class="nav-actions">
           <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
+              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+              <span class="fav-count-badge">0</span>
+            </a>
           <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
         </div>
       </div>
@@ -111,9 +114,9 @@
       <div class="agents-grid">
         
         <div class="agent-card fade-in-up delay-200">
-          <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80" alt="David Smith" class="agent-img">
+          <img src="../assets/images/agents/agent1.png" alt="Rahul Sharma" class="agent-img">
           <div class="agent-info">
-            <h3>David Smith</h3>
+            <h3>Rahul Sharma</h3>
             <p>Senior Property Agent</p>
             <div class="agent-stats">
               <span><i class="fa-solid fa-house"></i> 42 Listed</span>
@@ -127,9 +130,9 @@
         </div>
 
         <div class="agent-card fade-in-up delay-300">
-          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80" alt="Sarah Johnson" class="agent-img">
+          <img src="../assets/images/agents/agent2.png" alt="Priya Singh" class="agent-img">
           <div class="agent-info">
-            <h3>Sarah Johnson</h3>
+            <h3>Priya Singh</h3>
             <p>Commercial Specialist</p>
             <div class="agent-stats">
               <span><i class="fa-solid fa-house"></i> 35 Listed</span>
@@ -143,9 +146,9 @@
         </div>
 
         <div class="agent-card fade-in-up delay-400">
-          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80" alt="Michael Chen" class="agent-img">
+          <img src="../assets/images/agents/agent3.png" alt="Amit Desai" class="agent-img">
           <div class="agent-info">
-            <h3>Michael Chen</h3>
+            <h3>Amit Desai</h3>
             <p>Luxury Homes Expert</p>
             <div class="agent-stats">
               <span><i class="fa-solid fa-house"></i> 28 Listed</span>
@@ -162,7 +165,62 @@
     </div>
   </section>
 
-  <script src="../js/theme.js"></script>
+  
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="../index.html" class="footer-brand">
+            Estate Hub<span>&trade;</span>
+          </a>
+          <p><strong>Estate Hub</strong> is your premier partner in finding the perfect property. We make real estate simple, transparent, and secure.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="mortgage.html">Mortgage Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot"></i> Andheri West, Mumbai, MH</li>
+            <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fa-solid fa-envelope"></i> hello@estatehub.in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Estate Hub. All rights reserved.</p>
+      </div>
+    </div>
+    
+    <!-- Massive Watermark for Product Name -->
+    <div class="footer-watermark">
+      ESTATE HUB
+    </div>
+  </footer>
+
+<script src="../js/theme.js"></script>
   <script src="../js/app.js"></script>
 </body>
 </html>

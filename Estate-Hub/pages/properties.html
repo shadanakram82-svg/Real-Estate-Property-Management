@@ -13,52 +13,253 @@
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/animation.css">
   <style>
+    /* Dynamic Background in Hero */
+    @keyframes slowPan {
+      0% { transform: scale(1) translate(0, 0); }
+      50% { transform: scale(1.1) translate(-2%, -2%); }
+      100% { transform: scale(1) translate(0, 0); }
+    }
+    
+    .dynamic-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      will-change: filter, transform;
+      transition: filter 0.1s ease-out;
+      animation: slowPan 30s ease-in-out infinite;
+    }
+    
+    .dynamic-bg-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 23, 42, 0.4);
+      z-index: 1;
+      will-change: opacity, backdrop-filter;
+      backdrop-filter: blur(0px);
+      transition: backdrop-filter 0.1s ease-out, background 0.1s ease-out;
+    }
+    
+    [data-theme="dark"] .dynamic-bg-overlay {
+      background: rgba(15, 23, 42, 0.8);
+    }
+
     /* Inner Page Specific Styles */
     .page-hero {
-      background-color: var(--secondary-color);
-      padding: 8rem 0 4rem;
+      position: relative;
+      overflow: hidden;
+      padding: 10rem 0 4rem;
       text-align: center;
       color: #fff;
-    }
-    .page-hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    
-    .properties-layout {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
+      background: transparent;
     }
     
-    .filters-sidebar {
-      flex: 0 0 300px;
-      background-color: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    .page-hero .container {
+      position: relative;
+      z-index: 2;
+    }
+    .page-hero h1 { font-size: 3.5rem; margin-bottom: 0.5rem; text-shadow: 0 4px 20px rgba(0,0,0,0.5); }
+    .page-hero p { text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-size: 1.1rem; }
+    
+    /* Horizontal Premium Filter Bar */
+    .horizontal-filter-bar {
+      background: var(--card-bg);
       border: 1px solid var(--border-color);
-      position: sticky;
-      top: 100px;
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      margin: -4rem auto 3rem;
+      max-width: 1200px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-end;
+      position: relative;
+      z-index: 10;
     }
     
-    .filter-group { margin-bottom: 1.5rem; }
-    .filter-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
-    .filter-group input, .filter-group select {
-      width: 100%; padding: 0.8rem; border-radius: 8px;
-      border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-color);
+    .filter-item {
+      flex: 1;
+      min-width: 200px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
     
-    .properties-list { flex: 1; }
-    .properties-header { display: flex; justify-content: space-between; margin-bottom: 1.5rem; align-items: center; }
+    .filter-item label {
+      color: var(--text-color);
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .filter-item input, .filter-item select {
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.95);
+      color: #1f2937;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    
+    [data-theme="dark"] .filter-item input, [data-theme="dark"] .filter-item select {
+      background: rgba(30, 41, 59, 0.9);
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .filter-item input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+    }
+    
+    /* Custom Select Premium Styling */
+    .custom-select-wrapper {
+      position: relative;
+      width: 100%;
+    }
+    .custom-select-trigger {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      color: var(--text-color);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .custom-select-trigger:hover, .custom-select-wrapper.open .custom-select-trigger {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .custom-options {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 100%;
+      width: max-content;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    .custom-select-wrapper.open .custom-options {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .custom-option {
+      padding: 0.7rem 1rem;
+      margin: 0.2rem 0.4rem;
+      border-radius: 8px;
+      color: var(--text-color);
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+      white-space: nowrap;
+    }
+    .custom-option:hover {
+      background: rgba(37, 99, 235, 0.2);
+      color: var(--primary-color);
+    }
+    .custom-option.selected {
+      background: rgba(37, 99, 235, 0.08);
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+    .custom-option.selected:hover {
+      background: rgba(37, 99, 235, 0.25);
+      color: var(--primary-color);
+    }
+    
+    .filter-btn-container {
+      flex: 0 0 auto;
+    }
+    
+    #btn-apply-filters {
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 1rem;
+      background: var(--primary-color);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+    }
+
+    #btn-apply-filters:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(37, 99, 235, 0.6);
+    }
+    
+    .properties-list {
+      width: 100%;
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      position: relative;
+      z-index: 2;
+    }
+    
+    .properties-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      align-items: center;
+      position: relative;
+      z-index: 50;
+    }
     
     @media (max-width: 992px) {
-      .properties-layout { flex-direction: column; }
-      .filters-sidebar { width: 100%; flex: none; position: static; }
+      .horizontal-filter-bar {
+        flex-direction: column;
+        padding: 1.5rem;
+        margin: -1rem 1rem 2rem;
+      }
+      .filter-btn-container {
+        width: 100%;
+      }
+      #btn-apply-filters {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
   <!-- Navbar (Inner Page Style) -->
-  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+  <div class="navbar-wrapper" style="position: fixed; top: 0; background: transparent; z-index: 1000;">
     <nav class="navbar">
       <div class="nav-left">
         <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
@@ -77,7 +278,10 @@
         </ul>
         <div class="nav-actions">
           <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
+              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+              <span class="fav-count-badge">0</span>
+            </a>
           <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
         </div>
       </div>
@@ -85,75 +289,83 @@
   </div>
 
   <section class="page-hero">
+    <img class="dynamic-bg" id="dynamic-bg" src="../assets/images/properties/img_e9fa81c5.jpg" alt="Properties Hero">
+    <div class="dynamic-bg-overlay" id="dynamic-bg-overlay"></div>
     <div class="container">
       <h1 class="fade-in-up">Find Your Dream Property</h1>
       <p class="fade-in-up delay-100">Explore our comprehensive list of verified properties.</p>
     </div>
   </section>
 
-  <section class="section-padding">
-    <div class="container">
-      <div class="properties-layout">
-        
-        <!-- Sidebar Filters -->
-        <aside class="filters-sidebar fade-in-up delay-200">
-          <h3>Search & Filter</h3>
-          <hr style="border:0; border-top:1px solid var(--border-color); margin: 1rem 0;">
-          
-          <div class="filter-group">
-            <label>Keyword</label>
-            <input type="text" id="filter-keyword" placeholder="Search by name...">
-          </div>
-          <div class="filter-group">
-            <label>Location</label>
-            <input type="text" id="filter-location" placeholder="City or area...">
-          </div>
-          <div class="filter-group">
-            <label>Property Type</label>
-            <select id="filter-type">
-              <option value="">All Types</option>
-              <option value="Apartment">Apartment</option>
-              <option value="Villa">Villa</option>
-              <option value="Luxury Home">Luxury Home</option>
-              <option value="Office">Office</option>
-              <option value="Commercial">Commercial</option>
-              <option value="Farm House">Farm House</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label>Max Price</label>
-            <input type="number" id="filter-price" placeholder="e.g. 500000">
-          </div>
-          <div class="filter-group">
-            <label>Bedrooms</label>
-            <select id="filter-beds">
-              <option value="">Any</option>
-              <option value="1">1+</option>
-              <option value="2">2+</option>
-              <option value="3">3+</option>
-              <option value="4">4+</option>
-            </select>
-          </div>
-          <button id="btn-apply-filters" class="btn-primary" style="width:100%; border-radius:8px;">Apply Filters</button>
-        </aside>
+  <!-- Horizontal Filter Bar -->
+  <div class="container">
+    <div class="horizontal-filter-bar fade-in-up delay-200">
+      <div class="filter-item">
+        <label>Keyword</label>
+        <input type="text" id="filter-keyword" placeholder="Search by name...">
+      </div>
+      <div class="filter-item">
+        <label>Location</label>
+        <input type="text" id="filter-location" placeholder="City or area...">
+      </div>
+      <div class="filter-item">
+        <label>Property Type</label>
+        <select id="filter-type">
+          <option value="">All Types</option>
+          <option value="Apartment">Apartment</option>
+          <option value="Villa">Villa</option>
+          <option value="Luxury Home">Luxury Home</option>
+          <option value="Office">Office</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Farm House">Farm House</option>
+        </select>
+      </div>
+      <div class="filter-item">
+        <label>Max Price</label>
+        <input type="number" id="filter-price" placeholder="e.g. 500000">
+      </div>
+      <div class="filter-item">
+        <label>Bedrooms</label>
+        <select id="filter-beds">
+          <option value="">Any</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+        </select>
+      </div>
+      <div class="filter-btn-container" style="display:flex; gap:0.8rem; align-items:flex-end;">
+        <button id="btn-apply-filters"><i class="fa-solid fa-search"></i> Search</button>
+        <button id="btn-save-search" disabled class="btn-outline btn-gray-hover" style="opacity:0.5; pointer-events:none; background-color:transparent; border-color:var(--border-color); color:var(--text-color); height:48px; border-radius:12px; font-weight:600; padding:0 1.5rem; display:flex; align-items:center; gap:0.5rem;"><i class="fa-solid fa-bookmark" style="color:var(--primary-color);"></i> Save</button>
+      </div>
+    </div>
+  </div>
 
+  <section class="section-padding" style="padding-top: 0;">
+    <div class="container">
+      <div class="properties-layout" style="display: block;">
+        
         <!-- Properties List -->
         <div class="properties-list">
           <div class="properties-header fade-in-up delay-300">
-            <p><span id="results-count">0</span> Properties Found</p>
-            <div style="display:flex; align-items:center; gap:1rem;">
+            <div>
+              <h2 style="font-size: 1.6rem; color: var(--text-color); margin-bottom: 0.2rem;">Explore Properties</h2>
+              <p style="color: var(--text-light); font-size: 0.95rem;">Showing <span id="results-count" style="font-weight: 700; color: var(--primary-color);">0</span> Properties</p>
+            </div>
+            <div style="display:flex; align-items:center; gap:1.2rem; flex-wrap:wrap;">
               <div class="view-toggles" style="display:flex; gap:0.5rem;">
-                <button id="btn-grid-view" class="btn-icon active" style="color:var(--primary-color);" title="Grid View"><i class="fa-solid fa-border-all"></i></button>
+                <button id="btn-grid-view" class="btn-icon active" title="Grid View"><i class="fa-solid fa-border-all"></i></button>
                 <button id="btn-list-view" class="btn-icon" title="List View"><i class="fa-solid fa-list"></i></button>
               </div>
-              <div style="display:flex; align-items:center; gap:0.5rem;">
-                <label>Sort By:</label>
-                <select id="sort-by" style="padding:0.5rem; border-radius:8px; background:var(--card-bg); color:var(--text-color); border:1px solid var(--border-color);">
+              <div style="display:flex; align-items:center; gap:0.6rem;">
+                <label style="white-space:nowrap; margin-bottom:0; font-weight:500; color:var(--text-color);">Sort By:</label>
+                <select id="sort-by" style="height: 42px; padding:0 1rem; border-radius:10px; background:var(--bg-color); color:var(--text-color); border:1px solid var(--border-color); font-family:inherit; font-weight:500; outline:none; cursor:pointer;">
                   <option value="default">Default</option>
                   <option value="price-low">Price: Low to High</option>
                   <option value="price-high">Price: High to Low</option>
                 </select>
               </div>
+              <a href="compare.html" class="btn-outline btn-gray-hover" style="background-color:transparent; border-radius:10px; height:42px; padding:0 1.2rem; font-weight:600; display:flex; align-items:center; gap:0.5rem; border-color:var(--border-color); color:var(--text-color);"><i class="fa-solid fa-code-compare" style="color:var(--primary-color);"></i> Compare</a>
             </div>
           </div>
           
@@ -169,6 +381,178 @@
   <!-- Custom Scripts -->
   <script src="../js/data.js"></script>
   <script src="../js/theme.js"></script>
+  <script src="../js/app.js"></script>
   <script src="../js/search.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Custom Premium Select Logic
+      const selects = document.querySelectorAll('.filter-item select, #sort-by');
+      selects.forEach(select => {
+        // Hide original select
+        select.style.display = 'none';
+
+        // Create wrapper
+        const wrapper = document.createElement('div');
+        wrapper.className = 'custom-select-wrapper';
+        select.parentNode.insertBefore(wrapper, select);
+        wrapper.appendChild(select);
+
+        // Create trigger
+        const trigger = document.createElement('div');
+        trigger.className = 'custom-select-trigger';
+        trigger.innerHTML = `<span>${select.options[select.selectedIndex].text}</span><i class="fa-solid fa-chevron-down" style="font-size:0.8em; color:var(--primary-color);"></i>`;
+        wrapper.appendChild(trigger);
+
+        // Create options container
+        const optionsContainer = document.createElement('div');
+        optionsContainer.className = 'custom-options';
+        wrapper.appendChild(optionsContainer);
+
+        // Create custom options
+        Array.from(select.options).forEach((option, index) => {
+          const customOption = document.createElement('div');
+          customOption.className = `custom-option ${index === select.selectedIndex ? 'selected' : ''}`;
+          customOption.textContent = option.text;
+          customOption.dataset.value = option.value;
+          
+          customOption.addEventListener('click', function(e) {
+            e.stopPropagation();
+            // Update native select
+            select.value = this.dataset.value;
+            // Trigger change event 
+            select.dispatchEvent(new Event('change'));
+            
+            // Update trigger text
+            trigger.querySelector('span').textContent = this.textContent;
+            
+            // Update selected class
+            optionsContainer.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
+            this.classList.add('selected');
+            
+            // Close dropdown
+            wrapper.classList.remove('open');
+          });
+          
+          optionsContainer.appendChild(customOption);
+        });
+
+        // Toggle dropdown
+        trigger.addEventListener('click', function(e) {
+          e.stopPropagation();
+          // Close others
+          document.querySelectorAll('.custom-select-wrapper').forEach(w => {
+            if (w !== wrapper) w.classList.remove('open');
+          });
+          wrapper.classList.toggle('open');
+        });
+      });
+
+      // Close dropdowns when clicking outside
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+      });
+
+      // Existing Scroll Background Logic
+      const bg = document.getElementById('dynamic-bg');
+      const bgOverlay = document.getElementById('dynamic-bg-overlay');
+      
+      window.addEventListener('scroll', () => {
+        if(bg && bgOverlay) {
+          const scrollY = window.scrollY;
+          // Blur up to 20px based on scroll
+          const blurVal = Math.min(scrollY / 30, 20);
+          // Darken up to 0.7 opacity
+          const opacityVal = Math.min(0.4 + (scrollY / 1000), 0.85);
+          
+          bgOverlay.style.backdropFilter = `blur(${blurVal}px)`;
+          bgOverlay.style.WebkitBackdropFilter = `blur(${blurVal}px)`;
+          bgOverlay.style.background = `rgba(15, 23, 42, ${opacityVal})`;
+        }
+      });
+    });
+  </script>
+  <!-- FAQ Section -->
+  <section class="section-padding" style="background-color: var(--bg-color); border-top: 1px solid var(--border-color);">
+    <div class="container">
+      <div class="text-center fade-in-up" style="margin-bottom: 3rem;">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--text-color);">Frequently Asked Questions</h2>
+        <p style="color: var(--text-light); max-width: 600px; margin: 0 auto;">Find answers to common questions about buying, renting, and selling properties with Estate Hub.</p>
+      </div>
+      <div class="faq-container fade-in-up delay-100" style="max-width: 800px; margin: 0 auto;">
+        <!-- FAQ Items -->
+        <div class="faq-item">
+          <button class="faq-question">How do I schedule a property viewing?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>You can schedule a viewing by clicking the "Book Visit" button on any property details page, or by contacting our agents directly through the contact form.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">What are the additional costs of buying a home?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Beyond the property price, additional costs typically include registration fees, stamp duty, legal fees, and potential mortgage processing fees. Our agents can provide a detailed breakdown for any property.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Are the property listings updated regularly?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Yes! Our platform synchronizes with real-time market data to ensure all property availability, pricing, and details are accurate and up to date.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Do you offer property management services?<i class="fa-solid fa-chevron-down"></i></button>
+          <div class="faq-answer"><p>Absolutely. Estate Hub provides end-to-end property management services for landlords, including tenant screening, rent collection, and maintenance handling.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="../index.html" class="footer-brand">
+            Estate Hub<span>&trade;</span>
+          </a>
+          <p><strong>Estate Hub</strong> is your premier partner in finding the perfect property. We make real estate simple, transparent, and secure.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="mortgage.html">Mortgage Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot"></i> Andheri West, Mumbai, MH</li>
+            <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fa-solid fa-envelope"></i> hello@estatehub.in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Estate Hub. All rights reserved.</p>
+      </div>
+    </div>
+    
+    <!-- Massive Watermark for Product Name -->
+    <div class="footer-watermark">
+      ESTATE HUB
+    </div>
+  </footer>
+
 </body>
 </html>

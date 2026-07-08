@@ -50,28 +50,35 @@
     }
     
     .gallery-item {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      cursor: pointer;
+    }
+    
+    .gallery-img-container {
       position: relative;
       border-radius: 12px;
       overflow: hidden;
-      cursor: pointer;
       height: 250px;
     }
     
-    .gallery-item img {
+    .gallery-img-container img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: all 0.5s ease;
     }
     
-    .gallery-item:hover img {
+    .gallery-item:hover .gallery-img-container img {
       transform: scale(1.1);
+      filter: blur(4px);
     }
     
     .gallery-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(37, 99, 235, 0.7);
+      background: rgba(0, 0, 0, 0.2);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -83,52 +90,42 @@
       opacity: 1;
     }
     
-    .gallery-overlay i {
+    .read-more-circle {
+      width: 90px;
+      height: 90px;
+      background: rgba(20, 20, 20, 0.95);
       color: #fff;
-      font-size: 2rem;
-    }
-    
-    /* Lightbox */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.9);
-      z-index: 2000;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      opacity: 0;
-      visibility: hidden;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.2;
       transition: all 0.3s ease;
+      text-shadow: -1.5px 0px 0px rgba(0, 255, 255, 0.8), 1.5px 0px 0px rgba(255, 0, 0, 0.8);
+      transform: translateY(20px);
+    }
+
+    .gallery-item:hover .read-more-circle {
+      transform: translateY(0);
     }
     
-    .lightbox.active {
-      opacity: 1;
-      visibility: visible;
+    .gallery-info {
+      text-align: center;
     }
     
-    .lightbox img {
-      max-width: 90%;
-      max-height: 90vh;
-      border-radius: 8px;
-      box-shadow: 0 0 30px rgba(0,0,0,0.5);
-    }
-    
-    .lightbox-close {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
-      color: #fff;
-      font-size: 2.5rem;
-      cursor: pointer;
-      background: none;
-      border: none;
+    .gallery-info h3 {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      font-weight: 500;
     }
   </style>
 </head>
 <body>
 
-  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+  <div class="navbar-wrapper" style="position: fixed; top: 0; background: transparent; z-index: 1000;">
     <nav class="navbar">
       <div class="nav-left">
         <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
@@ -147,7 +144,10 @@
         </ul>
         <div class="nav-actions">
           <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
+              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+              <span class="fav-count-badge">0</span>
+            </a>
           <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
         </div>
       </div>
@@ -165,10 +165,9 @@
     <div class="container">
       
       <div class="gallery-filter fade-in-up delay-200">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="interior">Interior</button>
-        <button class="filter-btn" data-filter="exterior">Exterior</button>
-        <button class="filter-btn" data-filter="pool">Pool</button>
+        <button class="filter-btn active" data-filter="all">Property Photos</button>
+        <button class="filter-btn" data-filter="virtual">Virtual Tour UI</button>
+        <button class="filter-btn" data-filter="intex">Interior & Exterior Images</button>
       </div>
       
       <div class="gallery-grid fade-in-up delay-300">
@@ -178,25 +177,19 @@
     </div>
   </section>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightbox-close"><i class="fa-solid fa-xmark"></i></button>
-    <img src="" alt="Gallery Image" id="lightbox-img">
-  </div>
-
   <script src="../js/theme.js"></script>
   <script src="../js/app.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const images = [
-        { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80', category: 'exterior' },
-        { src: 'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=800&q=80', category: 'interior' },
-        { src: 'https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?w=800&q=80', category: 'pool' },
-        { src: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80', category: 'exterior' },
-        { src: 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80', category: 'interior' },
-        { src: 'https://images.unsplash.com/photo-1537726235470-1c5baa8b4df2?w=800&q=80', category: 'pool' },
-        { src: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=800&q=80', category: 'interior' },
-        { src: 'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=800&q=80', category: 'exterior' }
+        { src: '../assets/images/properties/img_72a2bcb3.jpg', category: 'virtual', type: 'Luxury Villa' },
+        { src: '../assets/images/gallery/img_f2583950.jpg', category: 'intex', type: 'Modern Apartment' },
+        { src: '../assets/images/gallery/img_4e3fc85d.jpg', category: 'all', type: 'Family Home' },
+        { src: '../assets/images/properties/img_59753e8d.jpg', category: 'virtual', type: 'Beachfront Condo' },
+        { src: '../assets/images/properties/img_3eb8bba8.jpg', category: 'intex', type: 'Cozy Cottage' },
+        { src: '../assets/images/properties/img_82d2772c.jpg', category: 'virtual', type: 'Penthouse Suite' },
+        { src: '../assets/images/gallery/img_1c8bb763.jpg', category: 'intex', type: 'Suburban House' },
+        { src: '../assets/images/properties/img_82d2772c.jpg', category: 'all', type: 'Luxury Mansion' }
       ];
 
       const grid = document.querySelector('.gallery-grid');
@@ -205,14 +198,23 @@
       function renderGallery(filter) {
         grid.innerHTML = '';
         images.forEach(img => {
-          if (filter === 'all' || img.category === filter) {
+          if (filter === 'all' || img.category === filter || img.category === 'all') {
             const item = document.createElement('div');
             item.className = 'gallery-item';
             item.innerHTML = `
-              <img src="${img.src}" alt="Gallery">
-              <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+              <div class="gallery-img-container">
+                <img src="${img.src}" alt="Gallery">
+                <div class="gallery-overlay">
+                  <div class="read-more-circle">Read<br>More</div>
+                </div>
+              </div>
+              <div class="gallery-info">
+                <h3>${img.type}</h3>
+              </div>
             `;
-            item.addEventListener('click', () => openLightbox(img.src));
+            item.addEventListener('click', () => {
+              window.location.href = 'details.html';
+            });
             grid.appendChild(item);
           }
         });
@@ -227,27 +229,62 @@
           renderGallery(e.target.getAttribute('data-filter'));
         });
       });
-
-      // Lightbox functionality
-      const lightbox = document.getElementById('lightbox');
-      const lightboxImg = document.getElementById('lightbox-img');
-      const closeBtn = document.getElementById('lightbox-close');
-
-      function openLightbox(src) {
-        lightboxImg.src = src;
-        lightbox.classList.add('active');
-      }
-
-      closeBtn.addEventListener('click', () => {
-        lightbox.classList.remove('active');
-      });
-
-      lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-          lightbox.classList.remove('active');
-        }
-      });
     });
   </script>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="../index.html" class="footer-brand">
+            Estate Hub<span>&trade;</span>
+          </a>
+          <p><strong>Estate Hub</strong> is your premier partner in finding the perfect property. We make real estate simple, transparent, and secure.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="mortgage.html">Mortgage Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot"></i> Andheri West, Mumbai, MH</li>
+            <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fa-solid fa-envelope"></i> hello@estatehub.in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Estate Hub. All rights reserved.</p>
+      </div>
+    </div>
+    
+    <!-- Massive Watermark for Product Name -->
+    <div class="footer-watermark">
+      ESTATE HUB
+    </div>
+  </footer>
+
 </body>
 </html>

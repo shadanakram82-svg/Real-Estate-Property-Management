@@ -12,10 +12,163 @@
   <link rel="stylesheet" href="../css/animation.css">
   <style>
     /* Details Page Specific */
+    @keyframes slideDownHero {
+      0% {
+        transform: translateY(-40px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .slide-down-hero {
+      animation: slideDownHero 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .review-card {
+      background: var(--card-bg, #fff);
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      border: 1px solid var(--border-color);
+      position: relative;
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      z-index: 1;
+      overflow: hidden;
+    }
+    .review-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      border-color: var(--primary-color);
+    }
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+    .reviewer-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .reviewer-info img {
+      width: 55px; height: 55px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--border-color);
+    }
+    .reviewer-info h4 {
+      margin: 0 0 0.2rem 0;
+      color: var(--text-color);
+      font-size: 1.1rem;
+    }
+    .reviewer-info span {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    .review-card p {
+      color: var(--text-color);
+      line-height: 1.7;
+      margin: 0;
+      font-style: italic;
+    }
+
+    .video-360-container {
+      position: relative;
+      width: 100%;
+      height: 450px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      background: #000;
+      cursor: pointer;
+    }
+    .video-360-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+      transition: opacity 0.4s ease;
+    }
+    .video-360-container:hover video {
+      opacity: 0.5;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      pointer-events: none;
+    }
+    .play-btn-360 {
+      width: 80px; height: 80px;
+      background: rgba(37,99,235,0.95);
+      color: white;
+      border-radius: 50%;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 2rem;
+      box-shadow: 0 0 0 0 rgba(37,99,235,0.7);
+      animation: pulsePlay 2s infinite;
+      transition: transform 0.3s ease;
+    }
+    .video-360-container:hover .play-btn-360 {
+      transform: scale(1.1);
+    }
+    .tag-360 {
+      margin-top: 1.5rem;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    @keyframes pulsePlay {
+      0% { box-shadow: 0 0 0 0 rgba(37,99,235,0.7); }
+      70% { box-shadow: 0 0 0 20px rgba(37,99,235,0); }
+      100% { box-shadow: 0 0 0 0 rgba(37,99,235,0); }
+    }
+
+    .sidebar-action-btn {
+      border-radius: 8px;
+      justify-content: flex-start;
+      padding: 0.9rem 1.2rem;
+      color: var(--text-color);
+      border: 1px solid var(--border-color);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      cursor: pointer;
+      text-decoration: none;
+      box-sizing: border-box;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .btn-fav:hover { background-color: rgba(239, 68, 68, 0.1); border-color: #ef4444; transform: translateY(-2px); }
+    .btn-comp:hover { background-color: rgba(37, 99, 235, 0.1); border-color: var(--primary-color); transform: translateY(-2px); }
+    .btn-visit:hover { background-color: rgba(245, 158, 11, 0.1); border-color: #f59e0b; transform: translateY(-2px); }
+    .btn-contact:hover { background-color: rgba(16, 185, 129, 0.1); border-color: #10b981; transform: translateY(-2px); }
+
     .details-gallery {
-      height: 60vh;
+      height: 70vh;
       min-height: 500px;
-      margin-top: 5rem;
+      margin-top: 0; /* Changed from 5rem to start at the top edge */
       background-size: cover;
       background-position: center;
       position: relative;
@@ -138,8 +291,9 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <div class="navbar-wrapper" style="position: fixed; top: 1rem; background: transparent; z-index: 1000;">
+
+<!-- Navbar -->
+  <div class="navbar-wrapper" style="position: fixed; top: 0; background: transparent; z-index: 1000;">
     <nav class="navbar">
       <div class="nav-left">
         <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
@@ -158,7 +312,10 @@
         </ul>
         <div class="nav-actions">
           <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-          <a href="dashboard.html" class="theme-toggle" title="Favorites & Dashboard"><i class="fa-solid fa-heart" style="color: #ef4444;"></i></a>
+          <a href="favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
+              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
+              <span class="fav-count-badge">0</span>
+            </a>
           <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
         </div>
       </div>
@@ -166,7 +323,7 @@
   </div>
 
   <!-- Dynamic Gallery BG -->
-  <div class="details-gallery" id="property-gallery">
+  <div class="details-gallery slide-down-hero" id="property-gallery">
     <!-- Image set via JS -->
   </div>
 
@@ -212,25 +369,114 @@
             </ul>
           </div>
           
+          <!-- Property Features -->
+          <div class="details-section">
+            <h3>Property Features</h3>
+            <ul class="amenities-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 1.5rem;">
+              <li><i class="fa-solid fa-calendar-days" style="color:var(--text-light);"></i> <strong>Year Built:</strong> <span id="feat-year">2024</span></li>
+              <li><i class="fa-solid fa-couch" style="color:var(--text-light);"></i> <strong>Furnished:</strong> <span id="feat-furnish">Fully Furnished</span></li>
+              <li><i class="fa-solid fa-car" style="color:var(--text-light);"></i> <strong>Parking:</strong> <span id="feat-park">3 Cars</span></li>
+              <li><i class="fa-solid fa-building-circle-check" style="color:var(--text-light);"></i> <strong>Status:</strong> <span id="feat-status">Available</span></li>
+              <li><i class="fa-solid fa-school" style="color:var(--text-light);"></i> <strong>Schools:</strong> <span id="feat-school">1.2 km away</span></li>
+              <li><i class="fa-solid fa-hospital" style="color:var(--text-light);"></i> <strong>Hospital:</strong> <span id="feat-hosp">2.5 km away</span></li>
+            </ul>
+          </div>
+          
+          <!-- 360 Video Tour -->
+          <div class="details-section">
+            <h3 style="margin-bottom: 1.5rem;">360° Virtual Tour</h3>
+            <div class="video-360-container" onclick="const v = this.querySelector('video'); v.play(); v.controls=true; this.querySelector('.video-overlay').style.display='none'; v.style.opacity='1';">
+              <video src="https://videos.pexels.com/video-files/7578552/7578552-uhd_2560_1440_30fps.mp4" poster="../assets/images/properties/360_thumb.png" loop style="object-fit: cover; width: 100%; height: 100%; border-radius: 20px;"></video>
+              <div class="video-overlay">
+                <div class="play-btn-360"><i class="fa-solid fa-play" style="margin-left: 5px;"></i></div>
+                <div class="tag-360"><i class="fa-solid fa-vr-cardboard"></i> INTERACTIVE 360°</div>
+              </div>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-light); font-size: 0.95rem;"><i class="fa-solid fa-circle-info" style="color: var(--primary-color);"></i> Drag to explore the space in 360 degrees or click play to start the guided tour.</p>
+          </div>
+          
           <div class="details-section">
             <h3>Location Map</h3>
-            <div class="map-placeholder">
-              <i class="fa-solid fa-map-location-dot" style="font-size: 3rem; margin-bottom:1rem;"></i><br>
-              Google Map Integration Placeholder
+            <div class="map-container" style="width: 100%; height: 400px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative; background: var(--card-bg); background-image: radial-gradient(var(--border-color) 1.5px, transparent 1.5px); background-size: 25px 25px;">
+              <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(15,23,42,0.85), rgba(30,41,59,0.95)); display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
+                <div style="width: 70px; height: 70px; background: var(--primary-color); border-radius: 50%; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 0 15px rgba(37,99,235,0.2); margin-bottom: 1.5rem;">
+                  <i class="fa-solid fa-location-dot" style="color: white; font-size: 2rem;"></i>
+                </div>
+                <h4 style="color: white; font-size: 1.8rem; margin-bottom: 0.5rem;" id="static-map-location">Premium Location</h4>
+                <p style="color: rgba(255,255,255,0.7); font-size: 1rem; max-width: 400px;">Exact coordinates are restricted for security. Please contact our agent to schedule a private viewing.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Reviews -->
+          <div class="details-section">
+            <h3 style="margin-bottom: 2rem;">Property Reviews</h3>
+            <div class="reviews-grid">
+              
+              <!-- Review 1 -->
+              <div class="review-card fade-in-up delay-100">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img src="../assets/images/gallery/img_e3011561.jpg" alt="Reviewer">
+                    <div>
+                      <h4>Priya Sharma</h4>
+                      <span>2 days ago</span>
+                    </div>
+                  </div>
+                  <div style="color: #FFB800;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                </div>
+                <p>Absolutely stunning property! The natural light and open floor plan are incredible. The neighborhood is very quiet and peaceful.</p>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="review-card fade-in-up delay-200">
+                <div class="review-header">
+                  <div class="reviewer-info">
+                    <img src="../assets/images/gallery/img_9080ffdf.jpg" alt="Reviewer">
+                    <div>
+                      <h4>Rahul Desai</h4>
+                      <span>1 week ago</span>
+                    </div>
+                  </div>
+                  <div style="color: #FFB800;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i></div>
+                </div>
+                <p>A great investment property. The location is prime and the amenities provided are top-notch. Highly recommend viewing.</p>
+              </div>
+
             </div>
           </div>
         </div>
 
         <!-- Sidebar -->
         <aside class="details-sidebar fade-in-up delay-200">
-          <div class="agent-card">
-            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&q=80" alt="Agent">
-            <h3>David Smith</h3>
+          <div class="agent-card" style="margin-bottom: 2rem;">
+            <img src="../assets/images/properties/img_f0de5ed7.jpg" alt="Agent">
+            <h3 id="agent-name">David Smith</h3>
             <p style="color: var(--text-light);">Senior Property Agent</p>
             <p style="margin: 1rem 0;"><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.9 (120 reviews)</p>
           </div>
           
-          <h4 style="margin-bottom: 1rem;">Contact Agent</h4>
+          <!-- Action Buttons -->
+          <div style="display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 2rem;">
+            <button id="btn-add-fav" class="sidebar-action-btn btn-fav">
+              <i class="fa-solid fa-heart" style="color: #ef4444; font-size: 1.2rem; width: 20px;"></i> 
+              <span>Add to Favorites</span>
+            </button>
+            <button id="btn-add-comp" class="sidebar-action-btn btn-comp">
+              <i class="fa-solid fa-scale-balanced" style="color: var(--primary-color); font-size: 1.2rem; width: 20px;"></i> 
+              <span>Compare Property</span>
+            </button>
+            <button id="btn-book-visit" class="sidebar-action-btn btn-visit">
+              <i class="fa-solid fa-calendar-check" style="color: #f59e0b; font-size: 1.2rem; width: 20px;"></i> 
+              <span>Book Visit</span>
+            </button>
+            <a href="#contact-form-section" id="btn-contact-agent" class="sidebar-action-btn btn-contact">
+              <i class="fa-solid fa-phone" style="color: #10b981; font-size: 1.2rem; width: 20px;"></i> 
+              <span>Contact Agent</span>
+            </a>
+          </div>
+
+          <h4 style="margin-bottom: 1rem;" id="contact-form-section">Message Agent</h4>
           <form class="contact-form">
             <div class="form-group">
               <input type="text" placeholder="Your Name" required>
@@ -244,8 +490,7 @@
             <div class="form-group">
               <textarea rows="4" placeholder="I'm interested in this property..."></textarea>
             </div>
-            <button type="submit" class="btn-primary" style="width: 100%; border-radius:8px;">Send Message</button>
-            <button type="button" class="btn-outline" style="width: 100%; margin-top: 1rem; color: var(--text-color); border-color: var(--border-color);">Book a Visit</button>
+            <button type="submit" class="btn-primary" style="width: 100%; border-radius:8px; padding: 0.8rem; font-size: 1rem;"><i class="fa-solid fa-paper-plane" style="margin-right: 0.5rem;"></i> Send Message</button>
           </form>
         </aside>
 
@@ -253,9 +498,64 @@
     </div>
   </section>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a href="../index.html" class="footer-brand">
+            Estate Hub<span>&trade;</span>
+          </a>
+          <p><strong>Estate Hub</strong> is your premier partner in finding the perfect property. We make real estate simple, transparent, and secure.</p>
+          <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="properties.html">Properties</a></li>
+            <li><a href="agents.html">Agents</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h3>Useful Links</h3>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="mortgage.html">Mortgage Calculator</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <ul class="contact-list">
+            <li><i class="fa-solid fa-location-dot"></i> Andheri West, Mumbai, MH</li>
+            <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+            <li><i class="fa-solid fa-envelope"></i> hello@estatehub.in</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Estate Hub. All rights reserved.</p>
+      </div>
+    </div>
+    
+    <!-- Massive Watermark for Product Name -->
+    <div class="footer-watermark">
+      ESTATE HUB
+    </div>
+  </footer>
+
   <!-- Custom Scripts -->
   <script src="../js/data.js"></script>
   <script src="../js/theme.js"></script>
+  <script src="../js/app.js"></script>
   <script src="../js/details.js"></script>
 </body>
 </html>
