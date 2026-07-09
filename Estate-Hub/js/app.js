@@ -122,17 +122,18 @@ document.addEventListener('DOMContentLoaded', () => {
   if (featuredGrid && typeof propertiesData !== 'undefined') {
     // Render only first 3 for featured section
     const featuredProperties = propertiesData.slice(0, 3);
+    const isRoot = !window.location.pathname.includes('/pages/');
     
     let html = '';
     featuredProperties.forEach((prop, index) => {
-      const delayClass = index === 0 ? '' : `delay-${index * 100}`;
+      const imgPath = isRoot ? prop.image.replace('../', '') : prop.image;
       
       html += `
-        <div class="property-card scroll-item">
+        <div class="property-card featured-reveal" data-reveal-index="${index}">
           <div class="property-img-wrapper">
             ${prop.badge ? `<span class="property-badge">${prop.badge}</span>` : ''}
             <span class="property-type">${prop.type}</span>
-            <img src="${prop.image}" alt="${prop.title}">
+            <img src="${imgPath}" alt="${prop.title}">
           </div>
           <div class="property-content">
             <div class="property-price">$${prop.price.toLocaleString()}</div>
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <button class="btn-icon btn-fav" data-id="${prop.id}" title="Add to Favorites"><i class="fa-regular fa-heart"></i></button>
                 <button class="btn-icon btn-compare" data-id="${prop.id}" title="Compare"><i class="fa-solid fa-code-compare"></i></button>
               </div>
-              <a href="pages/details.html?id=${prop.id}" class="btn-details">View Details</a>
+              <a href="${isRoot ? 'pages/details.html' : 'details.html'}?id=${prop.id}" class="btn-details">View Details</a>
             </div>
           </div>
         </div>
@@ -164,29 +165,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     featuredGrid.innerHTML = html;
-  }
-
-  // --- Featured Properties Sticky Scroll Reveal ---
-  const featuredSection = document.getElementById('featured-section');
-  if (featuredSection) {
-    window.addEventListener('scroll', () => {
-      const sectionRect = featuredSection.getBoundingClientRect();
-      const scrollProgress = -sectionRect.top / (sectionRect.height - window.innerHeight);
-      
-      // Get ALL scroll-items: title, cards (right to left), button
-      const allItems = featuredSection.querySelectorAll('.scroll-item');
-      const totalItems = allItems.length;
-      
-      allItems.forEach((item, index) => {
-        // Spread thresholds evenly across 0.05 to 0.85
-        const threshold = 0.05 + (index * (0.8 / Math.max(totalItems - 1, 1)));
-        
-        if (scrollProgress >= threshold) {
-          item.classList.add('scroll-visible');
-        } else {
-          item.classList.remove('scroll-visible');
+    
+    // Staggered scroll reveal
+    const featuredSection = document.getElementById('featured-section');
+    const featuredCards = featuredGrid.querySelectorAll('.featured-reveal');
+    // Standard Intersection Observer (Fade in one by one when they come into view)
+    const featuredObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const card = entry.target;
+          const index = parseInt(card.dataset.revealIndex);
+          setTimeout(() => {
+            card.classList.add('is-visible');
+          }, index * 200);
+          featuredObserver.unobserve(card);
         }
       });
+    }, {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    });
+    
+    featuredCards.forEach(card => {
+      // Ensure no inline styles are overriding CSS transitions
+      card.style.transform = '';
+      card.style.opacity = '';
+      card.style.transition = '';
+      featuredObserver.observe(card);
     });
   }
 
@@ -460,5 +465,68 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 3500);
     });
   }
+
+  // --- Custom Premium Select Logic (Global) ---
+  const customSelects = document.querySelectorAll('.filter-item select, #sort-by, select.form-select');
+  customSelects.forEach(select => {
+    select.style.display = 'none';
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'custom-select-wrapper';
+    if (select.classList.contains('form-select')) {
+      wrapper.classList.add('hero-select-wrapper');
+    }
+    
+    select.parentNode.insertBefore(wrapper, select);
+    wrapper.appendChild(select);
+
+    const trigger = document.createElement('div');
+    // inherit classes like form-input for hero selects
+    let inheritedClasses = select.className.replace('form-select', '').trim();
+    trigger.className = `custom-select-trigger ${inheritedClasses}`;
+    trigger.innerHTML = `<span>${select.options[select.selectedIndex]?.text || 'Select'}</span><i class="fa-solid fa-chevron-down" style="font-size:0.8em; color:var(--primary-color); transition: transform 0.3s ease;"></i>`;
+    wrapper.appendChild(trigger);
+
+    const optionsContainer = document.createElement('div');
+    optionsContainer.className = 'custom-options';
+    wrapper.appendChild(optionsContainer);
+
+    Array.from(select.options).forEach((option, index) => {
+      // Skip empty placeholder options if they have no text
+      if (!option.text) return;
+      
+      const customOption = document.createElement('div');
+      customOption.className = `custom-option ${index === select.selectedIndex ? 'selected' : ''}`;
+      customOption.textContent = option.text;
+      customOption.dataset.value = option.value;
+      
+      customOption.addEventListener('click', function(e) {
+        e.stopPropagation();
+        select.value = this.dataset.value;
+        select.dispatchEvent(new Event('change'));
+        
+        trigger.querySelector('span').textContent = this.textContent;
+        
+        optionsContainer.querySelectorAll('.custom-option').forEach(opt => opt.classList.remove('selected'));
+        this.classList.add('selected');
+        
+        wrapper.classList.remove('open');
+      });
+      
+      optionsContainer.appendChild(customOption);
+    });
+
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      document.querySelectorAll('.custom-select-wrapper').forEach(w => {
+        if (w !== wrapper) w.classList.remove('open');
+      });
+      wrapper.classList.toggle('open');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.custom-select-wrapper').forEach(w => w.classList.remove('open'));
+  });
 
 });

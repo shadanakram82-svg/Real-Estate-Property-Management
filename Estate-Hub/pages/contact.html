@@ -10,87 +10,8 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/animation.css">
-  <style>
-    .page-hero {
-      background-color: var(--secondary-color);
-      padding: 8rem 0 4rem;
-      text-align: center;
-      color: #fff;
-    }
-    
-    .contact-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-    
-    .contact-info {
-      background: var(--card-bg);
-      padding: 3rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      border: 1px solid var(--border-color);
-    }
-    
-    .info-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.5rem;
-      margin-bottom: 2rem;
-    }
-    
-    .info-icon {
-      width: 50px;
-      height: 50px;
-      background: rgba(37, 99, 235, 0.1);
-      color: var(--primary-color);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-    }
-    
-    .info-content h3 { color: var(--text-color); margin-bottom: 0.5rem; }
-    .info-content p { color: var(--text-light); }
-    
-    .contact-form-wrapper {
-      background: var(--card-bg);
-      padding: 3rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      border: 1px solid var(--border-color);
-    }
-    
-    .form-group { margin-bottom: 1.5rem; }
-    .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; color: var(--text-color); }
-    .form-group input, .form-group textarea {
-      width: 100%;
-      padding: 1rem;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      background: var(--bg-color);
-      color: var(--text-color);
-      font-family: inherit;
-    }
-    
-    .map-container {
-      margin-top: 4rem;
-      height: 400px;
-      background: #e2e8f0;
-      border-radius: 16px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-light);
-      font-size: 1.2rem;
-    }
-    
-    @media (max-width: 768px) {
-      .contact-layout { grid-template-columns: 1fr; }
-    }
-  </style>
+  
+  <link rel="stylesheet" href="../css/contact-page.css?v=8">
 </head>
 <body>
 
@@ -125,8 +46,12 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1 class="fade-in-up">Contact Us</h1>
-      <p class="fade-in-up delay-100">Get in touch with our experts today</p>
+      <h1 class="fade-in-up">Let's Connect</h1>
+      <p class="fade-in-up delay-100">Have questions about a property or need expert mortgage advice? Our team is available 24/7 to guide you through your real estate journey.</p>
+      <div class="hero-btn-group fade-in-up delay-200" style="justify-content: center; margin-top: 2rem;">
+        <a href="tel:+919876543210" class="btn-primary hero-btn"><i class="fa-solid fa-phone" style="margin-right: 0.5rem;"></i>Call Now</a>
+        <a href="#contactForm" class="hero-btn outline-light"><i class="fa-solid fa-calendar-check" style="margin-right: 0.5rem;"></i>Schedule Visit</a>
+      </div>
     </div>
   </section>
 
@@ -140,14 +65,14 @@
             <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div class="info-content">
               <h3>Address</h3>
-              <p>123 Real Estate Blvd<br>Beverly Hills, CA 90210</p>
+              <p>Bandra Kurla Complex<br>Mumbai, Maharashtra 400051</p>
             </div>
           </div>
           <div class="info-item">
             <div class="info-icon"><i class="fa-solid fa-phone"></i></div>
             <div class="info-content">
               <h3>Phone</h3>
-              <p>+1 (555) 123-4567<br>+1 (555) 987-6543</p>
+              <p>+91 98765 43210<br>+91 91234 56789</p>
             </div>
           </div>
           <div class="info-item">
@@ -157,11 +82,18 @@
               <p>info@estatehub.com<br>support@estatehub.com</p>
             </div>
           </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="info-content">
+              <h3>Working Hours</h3>
+              <p>Mon–Sat<br>9:00 AM – 7:00 PM</p>
+            </div>
+          </div>
         </div>
         
         <div class="contact-form-wrapper fade-in-up delay-300">
           <h2 style="margin-bottom: 2rem; color:var(--text-color);">Send a Message</h2>
-          <form id="contact-form">
+          <form id="contactForm">
             <div class="form-group">
               <label>Full Name *</label>
               <input type="text" required>
@@ -175,6 +107,15 @@
               <input type="tel">
             </div>
             <div class="form-group">
+              <label>Select Agent</label>
+              <select class="form-input form-select" style="margin-bottom: 1rem;">
+                <option value="any">Any Available Agent</option>
+                <option value="neha">Neha Sharma (Luxury Properties)</option>
+                <option value="rohan">Rohan Verma (Commercial)</option>
+                <option value="riya">Riya Kapoor (Residential)</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label>Message *</label>
               <textarea rows="4" required></textarea>
             </div>
@@ -184,10 +125,19 @@
         
       </div>
       
-      <div class="map-container fade-in-up delay-400">
-        <div>
-          <i class="fa-solid fa-map-location-dot" style="font-size: 3rem; margin-bottom:1rem; text-align:center; display:block;"></i>
-          Google Map Placeholder
+      <div class="office-map-section fade-in-up delay-400">
+        <div class="office-map-header">
+          <h2>Our Office Location</h2>
+          <p>Visit our office or get directions using Google Maps.</p>
+        </div>
+        <div class="office-map-wrapper">
+          <div class="office-map-frame">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995736125!3d19.08219783958221!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <div class="office-map-actions">
+            <a href="https://maps.google.com/?q=Mumbai,Maharashtra" target="_blank" class="btn-primary" style="border-radius: 8px; padding: 0.8rem 2rem; text-decoration: none;"><i class="fa-solid fa-diamond-turn-right" style="margin-right: 8px;"></i>Get Directions</a>
+            <button onclick="document.getElementById('contactForm').scrollIntoView({behavior: 'smooth'})" class="btn-outline" style="border-radius: 8px; padding: 0.8rem 2rem; cursor: pointer; color: var(--text-color); border-color: var(--border-color);"><i class="fa-solid fa-envelope" style="margin-right: 8px;"></i>Contact Us</button>
+          </div>
         </div>
       </div>
       
@@ -257,6 +207,51 @@
       ESTATE HUB
     </div>
   </footer>
+  <!-- Success Modal -->
+  <div class="custom-modal-overlay" id="successModal">
+    <div class="custom-modal-content">
+      <div class="modal-icon-wrapper">
+        <i class="fa-solid fa-paper-plane"></i>
+      </div>
+      <h3 class="modal-title">Message Sent!</h3>
+      <p class="modal-desc">Thank you for reaching out. Our expert team will get back to you shortly.</p>
+      <div class="modal-actions">
+        <button class="btn-modal-outline" id="closeModalBtn">Close</button>
+        <a href="../index.html" class="btn-modal-primary">Go to Home</a>
+      </div>
+    </div>
+  </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const contactForm = document.getElementById('contactForm');
+      const successModal = document.getElementById('successModal');
+      const closeModalBtn = document.getElementById('closeModalBtn');
+
+      if (contactForm && successModal) {
+        contactForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          successModal.classList.add('active');
+        });
+        
+        closeModalBtn.addEventListener('click', () => {
+          successModal.classList.remove('active');
+          contactForm.reset();
+          
+          // Reset custom select trigger if present
+          const customSelectTrigger = document.querySelector('#contactForm .custom-select-trigger span');
+          if (customSelectTrigger) {
+            customSelectTrigger.textContent = 'Any Available Agent';
+          }
+        });
+        
+        successModal.addEventListener('click', (e) => {
+          if (e.target === successModal) {
+            closeModalBtn.click();
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>

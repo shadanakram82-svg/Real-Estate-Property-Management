@@ -1,0 +1,31 @@
+.error-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: var(--bg-color);
+    }
+    
+    .error-content h1 {
+      font-size: 8rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      line-height: 1;
+    }
+    
+    .error-content h2 {
+      font-size: 2rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+    
+    .error-content p {
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }

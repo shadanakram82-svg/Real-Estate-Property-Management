@@ -10,66 +10,8 @@
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
   <link rel="stylesheet" href="../css/animation.css">
-  <style>
-    .page-hero {
-      background-color: var(--secondary-color);
-      padding: 8rem 0 4rem;
-      text-align: center;
-      color: #fff;
-    }
-    
-    .agents-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    
-    .agent-card {
-      background: var(--card-bg);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-      border: 1px solid var(--border-color);
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    
-    .agent-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-    }
-    
-    .agent-img {
-      width: 100%;
-      height: 250px;
-      object-fit: cover;
-    }
-    
-    .agent-info {
-      padding: 1.5rem;
-    }
-    
-    .agent-info h3 { color: var(--text-color); margin-bottom: 0.2rem; }
-    .agent-info p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 1rem; }
-    
-    .agent-stats {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-      color: var(--text-color);
-      font-weight: 500;
-    }
-    
-    .agent-stats i { color: var(--primary-color); margin-right: 0.3rem; }
-    
-    .agent-actions {
-      display: flex;
-      gap: 0.5rem;
-      border-top: 1px solid var(--border-color);
-      padding-top: 1.5rem;
-    }
-  </style>
+  
+  <link rel="stylesheet" href="../css/agents-page.css?v=2">
 </head>
 <body>
 
@@ -104,68 +46,190 @@
 
   <section class="page-hero">
     <div class="container">
-      <h1 class="fade-in-up">India's Elite Real Estate Experts</h1>
-      <p class="fade-in-up delay-100" style="max-width: 650px; margin: 1rem auto 0; font-size: 1.15rem; line-height: 1.7; color: rgba(255, 255, 255, 0.9);">Our award-winning team of seasoned professionals is dedicated to turning your property dreams into reality. Experience unparalleled local expertise, complete transparency, and a premium home-buying journey.</p>
-    </div>
-  </section>
-
-  <section class="section-padding">
-    <div class="container">
-      <div class="agents-grid">
-        
-        <div class="agent-card fade-in-up delay-200">
-          <img src="../assets/images/agents/agent1.png" alt="Rahul Sharma" class="agent-img">
-          <div class="agent-info">
-            <h3>Rahul Sharma</h3>
-            <p>Senior Property Agent</p>
-            <div class="agent-stats">
-              <span><i class="fa-solid fa-house"></i> 42 Listed</span>
-              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.9/5</span>
-            </div>
-            <div class="agent-actions">
-              <a href="#" class="btn-primary" style="flex:1; border-radius:8px; padding:0.5rem;"><i class="fa-solid fa-phone"></i> Call</a>
-              <a href="#" class="btn-outline" style="flex:1; border-radius:8px; padding:0.5rem; color:var(--text-color); border-color:var(--border-color);"><i class="fa-solid fa-envelope"></i> Email</a>
-            </div>
-          </div>
+      <h1 class="fade-in-up" style="font-size: 4rem; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 1.5rem; text-shadow: 0 4px 20px rgba(0,0,0,0.5);">Our Expert Agents</h1>
+      <p class="fade-in-up delay-100" style="max-width: 550px; margin: 0; font-size: 1.15rem; line-height: 1.7; color: rgba(255, 255, 255, 0.9); font-weight: 400; text-shadow: 0 2px 10px rgba(0,0,0,0.5);">Discover the elite real estate professionals dedicated to making your property dreams come true with unmatched local expertise.</p>
+      
+      <div class="fade-in-up delay-200" style="margin-top: 2.5rem;">
+        <a href="#agents" class="btn-primary" style="padding: 0.8rem 2rem; border-radius: 50px; font-size: 0.95rem; box-shadow: 0 10px 30px rgba(37,99,235,0.4); color: #fff; border-color: #fff;">Browse Agents</a>
+      </div>
+      
+      <div class="hero-trust-badges fade-in-up delay-200">
+        <div class="trust-badge">
+          <i class="fa-solid fa-trophy"></i>
+          <span>Award Winning Team</span>
         </div>
-
-        <div class="agent-card fade-in-up delay-300">
-          <img src="../assets/images/agents/agent2.png" alt="Priya Singh" class="agent-img">
-          <div class="agent-info">
-            <h3>Priya Singh</h3>
-            <p>Commercial Specialist</p>
-            <div class="agent-stats">
-              <span><i class="fa-solid fa-house"></i> 35 Listed</span>
-              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.8/5</span>
-            </div>
-            <div class="agent-actions">
-              <a href="#" class="btn-primary" style="flex:1; border-radius:8px; padding:0.5rem;"><i class="fa-solid fa-phone"></i> Call</a>
-              <a href="#" class="btn-outline" style="flex:1; border-radius:8px; padding:0.5rem; color:var(--text-color); border-color:var(--border-color);"><i class="fa-solid fa-envelope"></i> Email</a>
-            </div>
-          </div>
+        <div class="trust-badge">
+          <i class="fa-solid fa-users"></i>
+          <span>10k+ Happy Clients</span>
         </div>
-
-        <div class="agent-card fade-in-up delay-400">
-          <img src="../assets/images/agents/agent3.png" alt="Amit Desai" class="agent-img">
-          <div class="agent-info">
-            <h3>Amit Desai</h3>
-            <p>Luxury Homes Expert</p>
-            <div class="agent-stats">
-              <span><i class="fa-solid fa-house"></i> 28 Listed</span>
-              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 5.0/5</span>
-            </div>
-            <div class="agent-actions">
-              <a href="#" class="btn-primary" style="flex:1; border-radius:8px; padding:0.5rem;"><i class="fa-solid fa-phone"></i> Call</a>
-              <a href="#" class="btn-outline" style="flex:1; border-radius:8px; padding:0.5rem; color:var(--text-color); border-color:var(--border-color);"><i class="fa-solid fa-envelope"></i> Email</a>
-            </div>
-          </div>
+        <div class="trust-badge">
+          <i class="fa-solid fa-star"></i>
+          <span>5-Star Rated Service</span>
         </div>
-        
       </div>
     </div>
   </section>
 
-  
+  <section id="agents" class="section-padding">
+    <div class="container">
+      
+      <!-- Agent Search Bar -->
+      <div class="horizontal-filter-bar fade-in-up delay-300">
+        <div class="filter-item">
+          <label for="agent-name">Search by Name</label>
+          <input type="text" id="agent-name" placeholder="e.g. Rahul Sharma">
+        </div>
+        <div class="filter-item">
+          <label for="agent-city">Search by City</label>
+          <select id="agent-city">
+            <option value="">All Cities</option>
+            <option value="mumbai">Mumbai</option>
+            <option value="delhi">Delhi</option>
+            <option value="bangalore">Bangalore</option>
+          </select>
+        </div>
+        <div class="filter-btn-container">
+          <button class="btn-apply-filters"><i class="fa-solid fa-magnifying-glass"></i> Search Agent</button>
+        </div>
+      </div>
+
+      <div class="agents-list">
+        
+        <div class="agent-modern-card" data-city="mumbai">
+          <div class="agent-modern-img-wrapper">
+            <img src="../assets/images/agents/agent1.png" alt="Rahul Sharma" class="agent-img">
+          </div>
+          <div class="agent-info">
+            <h3>Rahul Sharma</h3>
+            <p>Senior Property Agent</p>
+            <p style="text-transform:none; letter-spacing:normal; color:var(--text-light); font-weight:400; font-size:1rem;">With over 12 years of experience in the luxury real estate market, Rahul brings unmatched negotiation skills and an extensive network to help you secure the best deals in Mumbai.</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-location-dot"></i> Mumbai</span>
+              <span><i class="fa-solid fa-house"></i> <strong class="counter-anim" data-target="42">0</strong> Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.9/5</span>
+            </div>
+            <div class="agent-actions">
+              <div class="magnetic-wrap"><a href="#" class="btn-primary magnetic-btn"><i class="fa-solid fa-phone"></i> Call Rahul</a></div>
+              <div class="magnetic-wrap"><a href="#" class="btn-outline btn-fill-hover magnetic-btn" style="border-color:var(--border-color); color:var(--text-color);"><i class="fa-solid fa-envelope"></i> Message</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-modern-card" data-city="delhi">
+          <div class="agent-modern-img-wrapper">
+            <img src="../assets/images/agents/agent2.png" alt="Priya Singh" class="agent-img">
+          </div>
+          <div class="agent-info">
+            <h3>Priya Singh</h3>
+            <p>Commercial Specialist</p>
+            <p style="text-transform:none; letter-spacing:normal; color:var(--text-light); font-weight:400; font-size:1rem;">Specializing in prime commercial real estate, Priya helps businesses find the perfect office spaces and retail locations. Her deep understanding of zoning laws is an invaluable asset.</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-location-dot"></i> Delhi</span>
+              <span><i class="fa-solid fa-house"></i> <strong class="counter-anim" data-target="35">0</strong> Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.8/5</span>
+            </div>
+            <div class="agent-actions">
+              <div class="magnetic-wrap"><a href="#" class="btn-primary magnetic-btn"><i class="fa-solid fa-phone"></i> Call Priya</a></div>
+              <div class="magnetic-wrap"><a href="#" class="btn-outline btn-fill-hover magnetic-btn" style="border-color:var(--border-color); color:var(--text-color);"><i class="fa-solid fa-envelope"></i> Message</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-modern-card" data-city="bangalore">
+          <div class="agent-modern-img-wrapper">
+            <img src="../assets/images/agents/agent3.png" alt="Amit Desai" class="agent-img">
+          </div>
+          <div class="agent-info">
+            <h3>Amit Desai</h3>
+            <p>Luxury Homes Expert</p>
+            <p style="text-transform:none; letter-spacing:normal; color:var(--text-light); font-weight:400; font-size:1rem;">Amit is known for his exclusive portfolio of farmhouses and oceanfront villas. Discretion and premium customer service are the cornerstones of Amit's real estate practice.</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-location-dot"></i> Bangalore</span>
+              <span><i class="fa-solid fa-house"></i> <strong class="counter-anim" data-target="28">0</strong> Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 5.0/5</span>
+            </div>
+            <div class="agent-actions">
+              <div class="magnetic-wrap"><a href="#" class="btn-primary magnetic-btn"><i class="fa-solid fa-phone"></i> Call Amit</a></div>
+              <div class="magnetic-wrap"><a href="#" class="btn-outline btn-fill-hover magnetic-btn" style="border-color:var(--border-color); color:var(--text-color);"><i class="fa-solid fa-envelope"></i> Message</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="agent-modern-card" data-city="mumbai">
+          <div class="agent-modern-img-wrapper">
+            <img src="../assets/images/agents/agent_neha.png" alt="Neha Kapoor" class="agent-img">
+          </div>
+          <div class="agent-info">
+            <h3>Neha Kapoor</h3>
+            <p>New Projects Specialist</p>
+            <p style="text-transform:none; letter-spacing:normal; color:var(--text-light); font-weight:400; font-size:1rem;">With a sharp eye for modern architecture and upcoming developments, Neha specializes in off-plan properties and high-yield new residential projects across emerging suburbs.</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-location-dot"></i> Mumbai</span>
+              <span><i class="fa-solid fa-house"></i> <strong class="counter-anim" data-target="15">0</strong> Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.7/5</span>
+            </div>
+            <div class="agent-actions">
+              <div class="magnetic-wrap"><a href="#" class="btn-primary magnetic-btn"><i class="fa-solid fa-phone"></i> Call Neha</a></div>
+              <div class="magnetic-wrap"><a href="#" class="btn-outline btn-fill-hover magnetic-btn" style="border-color:var(--border-color); color:var(--text-color);"><i class="fa-solid fa-envelope"></i> Message</a></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="agent-modern-card" data-city="delhi">
+          <div class="agent-modern-img-wrapper">
+            <img src="../assets/images/agents/agent_rohan.png" alt="Rohan Verma" class="agent-img">
+          </div>
+          <div class="agent-info">
+            <h3>Rohan Verma</h3>
+            <p>Leasing Expert</p>
+            <p style="text-transform:none; letter-spacing:normal; color:var(--text-light); font-weight:400; font-size:1rem;">Rohan ensures hassle-free rentals and property management for busy landlords. His vast network connects verified tenants with premium rental homes quickly and efficiently.</p>
+            <div class="agent-stats">
+              <span><i class="fa-solid fa-location-dot"></i> Delhi</span>
+              <span><i class="fa-solid fa-house"></i> <strong class="counter-anim" data-target="54">0</strong> Listed</span>
+              <span><i class="fa-solid fa-star" style="color:var(--accent-color);"></i> 4.9/5</span>
+            </div>
+            <div class="agent-actions">
+              <div class="magnetic-wrap"><a href="#" class="btn-primary magnetic-btn"><i class="fa-solid fa-phone"></i> Call Rohan</a></div>
+              <div class="magnetic-wrap"><a href="#" class="btn-outline btn-fill-hover magnetic-btn" style="border-color:var(--border-color); color:var(--text-color);"><i class="fa-solid fa-envelope"></i> Message</a></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA Section -->
+  <section class="agent-bottom-cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="cta-content">
+          <h2 class="fade-in-up">Ready to Find Your Dream Home?</h2>
+          <p class="fade-in-up delay-100">Connect with our top-tier agents and experience a seamless property journey tailored just for you.</p>
+          <div class="cta-stats fade-in-up delay-200">
+            <div class="stat-box">
+              <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+              <h3><span class="counter-anim" data-target="50">0</span>+</h3>
+              <p>Expert Agents</p>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+              <h3><span class="counter-anim" data-target="15000">0</span>+</h3>
+              <p>Properties Sold</p>
+            </div>
+            <div class="stat-box">
+              <div class="stat-icon"><i class="fa-solid fa-star"></i></div>
+              <h3><span class="counter-anim" data-target="99">0</span>%</h3>
+              <p>Client Satisfaction</p>
+            </div>
+          </div>
+          <div class="fade-in-up delay-300">
+            <a href="contact.html" class="btn-primary magnetic-btn" style="padding: 1rem 3rem; border-radius: 50px; font-size: 1.1rem; display: inline-flex; align-items: center; gap: 0.8rem; box-shadow: 0 10px 30px rgba(37,99,235,0.4);">Book a Visit <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -222,5 +286,134 @@
 
 <script src="../js/theme.js"></script>
   <script src="../js/app.js"></script>
+  <script>
+    // 3D Parallax Tilt Effect & Spotlight for Agent Cards
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.agent-modern-card');
+      cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left; 
+          const y = e.clientY - rect.top;
+          
+          // Set Spotlight Position
+          card.style.setProperty('--spotlight-x', `${x}px`);
+          card.style.setProperty('--spotlight-y', `${y}px`);
+          
+          // 3D Tilt Math
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          // Max rotation is 6 degrees for smoother feel
+          const rotateX = ((y - centerY) / centerY) * -6; 
+          const rotateY = ((x - centerX) / centerX) * 6;
+          
+          card.style.transform = `perspective(1200px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          card.style.transition = 'none';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = `perspective(1200px) scale(1) rotateX(0deg) rotateY(0deg)`;
+          card.style.transition = 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+          card.style.setProperty('--spotlight-x', `-1000px`);
+          card.style.setProperty('--spotlight-y', `-1000px`);
+        });
+
+        card.addEventListener('mouseenter', () => {
+          card.style.transition = 'transform 0.1s ease';
+        });
+      });
+      
+      // Magnetic Buttons
+      const magneticBtns = document.querySelectorAll('.magnetic-btn');
+      magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          // Move button slightly towards cursor
+          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        btn.addEventListener('mouseleave', () => {
+          btn.style.transform = `translate(0px, 0px)`;
+        });
+      });
+      
+      // Counter Animation
+      const counters = document.querySelectorAll('.counter-anim');
+      const counterObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.getAttribute('data-target'));
+            let current = 0;
+            const increment = target / 40; // speed
+            
+            const updateCounter = () => {
+              current += increment;
+              if (current < target) {
+                el.innerText = Math.ceil(current);
+                requestAnimationFrame(updateCounter);
+              } else {
+                el.innerText = target;
+              }
+            };
+            updateCounter();
+            observer.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      counters.forEach(counter => counterObserver.observe(counter));
+      // Search Filter Logic
+      const searchBtn = document.querySelector('.btn-apply-filters');
+      const nameInput = document.getElementById('agent-name');
+      const citySelect = document.getElementById('agent-city');
+      const agentCards = document.querySelectorAll('.agent-modern-card');
+
+      const filterAgents = () => {
+        const nameQuery = nameInput.value.toLowerCase().trim();
+        const cityQuery = citySelect.value.toLowerCase();
+        
+        agentCards.forEach(card => {
+          const cardName = card.querySelector('h3').innerText.toLowerCase();
+          const cardCity = card.getAttribute('data-city') || '';
+          
+          const matchesName = cardName.includes(nameQuery);
+          const matchesCity = cityQuery === '' || cardCity === cityQuery;
+          
+          if (matchesName && matchesCity) {
+            card.style.display = 'flex';
+            // simple re-trigger of animation
+            card.style.animation = 'none';
+            card.offsetHeight; // trigger reflow
+            card.style.animation = 'reveal-diagonal-right 0.5s ease forwards';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      };
+
+      if (searchBtn) searchBtn.addEventListener('click', filterAgents);
+      if (citySelect) citySelect.addEventListener('change', filterAgents);
+      if (nameInput) {
+        nameInput.addEventListener('keyup', (e) => {
+          if(e.key === 'Enter') filterAgents();
+        });
+      }
+      
+      // CTA Box Spotlight
+      const ctaBox = document.querySelector('.cta-inner');
+      if(ctaBox) {
+        ctaBox.addEventListener('mousemove', (e) => {
+          const rect = ctaBox.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          ctaBox.style.setProperty('--cta-spotlight-x', `${x}px`);
+          ctaBox.style.setProperty('--cta-spotlight-y', `${y}px`);
+        });
+      }
+    });
+  </script>
 </body>
 </html>

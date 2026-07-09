@@ -50,3 +50,45 @@
 .delay-300 { animation-delay: 300ms; }
 .delay-400 { animation-delay: 400ms; }
 .delay-500 { animation-delay: 500ms; }
+
+/* Hero Background Reveal */
+@keyframes hero-bg-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.15);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* Fade In Bottom Left */
+.fade-in-bottom-left {
+  opacity: 0;
+  transform: translate(-50px, 50px);
+  animation: fadeInBottomLeft 0.8s ease forwards;
+}
+
+@keyframes fadeInBottomLeft {
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+
+/* Fade In Bottom Right */
+.fade-in-bottom-right {
+  opacity: 0;
+  transform: translate(50px, 50px);
+  animation: fadeInBottomRight 0.8s ease forwards;
+}
+
+@keyframes fadeInBottomRight {
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}
+

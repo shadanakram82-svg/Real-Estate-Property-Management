@@ -9,113 +9,277 @@
   
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
-  <link rel="stylesheet" href="../css/animation.css">
-  <style>
-    .page-hero {
-      background-color: var(--secondary-color);
-      padding: 8rem 0 4rem;
-      text-align: center;
-      color: #fff;
-    }
-    .page-hero h1 { font-size: 3rem; margin-bottom: 0.5rem; }
-    
-    .mortgage-layout {
-      display: flex;
-      gap: 3rem;
-      align-items: flex-start;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-    
-    .mortgage-form-card {
-      flex: 1;
-      background: var(--card-bg);
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-      border: 1px solid var(--border-color);
-    }
-    
-    .mortgage-form-group {
-      margin-bottom: 1.5rem;
-      position: relative;
-    }
-    
-    .mortgage-form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--text-color);
-    }
-    
-    .mortgage-form-group input {
-      width: 100%;
-      padding: 1rem 1rem 1rem 2.5rem;
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      font-family: inherit;
-      font-size: 1rem;
-      background: var(--bg-color);
-      color: var(--text-color);
-    }
-    
-    .input-prefix {
-      position: absolute;
-      left: 1rem;
-      bottom: 1rem;
-      color: var(--text-light);
-      font-weight: 500;
-    }
-    
-    .mortgage-results-card {
-      flex: 1;
-      background: var(--secondary-color);
-      color: #fff;
-      padding: 2.5rem;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 100px;
-    }
-    
-    .result-item {
-      margin-bottom: 2rem;
-    }
-    
-    .result-item h4 {
-      color: rgba(255,255,255,0.7);
-      font-weight: 400;
-      font-size: 1rem;
-      margin-bottom: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .result-item .value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #fff;
-    }
-    
-    .result-item.small .value {
-      font-size: 1.5rem;
-    }
-    
-    .btn-group {
-      display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
-    }
-    
-    @media (max-width: 768px) {
-      .mortgage-layout { flex-direction: column; }
-      .mortgage-results-card { width: 100%; position: static; }
-    }
-  </style>
+  <link rel="stylesheet" href="../css/animation.css?v=3">
+  <link rel="stylesheet" href="../css/mortgage-page.css?v=24">
 </head>
 <body>
 
-  
+<!-- Navbar -->
+  <div class="navbar-wrapper mortgage-navbar-wrapper">
+    <nav class="navbar">
+      <div class="nav-left">
+        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+        <ul class="nav-menu">
+          <li><a href="../index.html" class="nav-link">Home</a></li>
+          <li><a href="properties.html" class="nav-link">Properties</a></li>
+          <li><a href="agents.html" class="nav-link">Agents</a></li>
+          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        </ul>
+      </div>
+      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
+      <div class="nav-right">
+        <ul class="nav-menu nav-menu-right">
+           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
+           <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
+          <a href="favorites.html" class="theme-toggle theme-toggle-rel" title="Favorites">
+              <i class="fa-solid fa-heart heart-icon"></i>
+              <span class="fav-count-badge">0</span>
+            </a>
+          <a href="contact.html" class="btn-primary book-visit-btn">Book Visit</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <section class="page-hero">
+    <div class="container hero-content-grid">
+      <div class="hero-text-content fade-in-up">
+        <div class="hero-tag">🏦 Smart Mortgage Calculator</div>
+        <h1>Calculate Your Home Loan<br><span class="hero-accent-text">with Confidence</span></h1>
+        <p>Estimate your monthly EMI, total interest, and repayment amount instantly.</p>
+        
+        <div class="hero-btn-group">
+          <button onclick="document.getElementById('calculator-section').scrollIntoView({behavior: 'smooth'})" class="btn-primary hero-btn">Calculate EMI</button>
+          <a href="properties.html" class="btn-outline hero-btn outline-light">Browse Properties</a>
+        </div>
+        
+        <div class="hero-stats">
+          <div class="stat-item"><strong>50K+</strong> Loans</div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><strong>4.9<i class="fa-solid fa-star star-icon"></i></strong> Rating</div>
+          <div class="stat-divider"></div>
+          <div class="stat-item"><strong>99%</strong> Accuracy</div>
+        </div>
+      </div>
+      
+      <div class="hero-visual-container fade-in-up delay-200">
+        <div class="visual-center-element">
+          <i class="fa-solid fa-house-chimney"></i>
+        </div>
+        
+        <div class="floating-card fc-1">
+          <div class="fc-icon">💰</div>
+          <div class="fc-text">
+            <h4>EMI Card</h4>
+            <p>Smart Calc</p>
+          </div>
+        </div>
+        
+        <div class="floating-card fc-2">
+          <div class="fc-icon">📈</div>
+          <div class="fc-text">
+            <h4>Interest Card</h4>
+            <p>Live Rates</p>
+          </div>
+        </div>
+        
+        <div class="floating-card fc-3">
+          <div class="fc-icon">🏦</div>
+          <div class="fc-text">
+            <h4>Loan Card</h4>
+            <p>Fast Approval</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-padding" id="calculator-section">
+    <div class="container">
+      <div class="mortgage-layout">
+        
+        <div class="mortgage-form-card reveal-left">
+          <h2 class="form-card-title">Loan Details</h2>
+          <form id="mortgage-form">
+            <div class="mortgage-form-group">
+              <label for="price">Property Price</label>
+              <span class="input-prefix">$</span>
+              <input type="number" id="price" required placeholder="e.g. 500000" min="0">
+            </div>
+            
+            <div class="mortgage-form-group">
+              <label for="down-payment">Down Payment</label>
+              <span class="input-prefix">$</span>
+              <input type="number" id="down-payment" required placeholder="e.g. 100000" min="0">
+            </div>
+            
+            <div class="mortgage-form-group">
+              <label for="interest-rate">Interest Rate (Yearly)</label>
+              <span class="input-prefix input-suffix">%</span>
+              <input type="number" id="interest-rate" class="padded-input" required placeholder="e.g. 5.5" step="0.01" min="0">
+            </div>
+            
+            <div class="mortgage-form-group">
+              <label for="loan-term">Loan Duration (Years)</label>
+              <span class="input-prefix input-suffix">Yrs</span>
+              <input type="number" id="loan-term" class="padded-input" required placeholder="e.g. 30" min="1" max="50">
+            </div>
+            
+            <div class="btn-group">
+              <button type="submit" class="btn-primary calc-btn-primary">Calculate EMI</button>
+              <button type="button" id="btn-reset" class="btn-outline calc-btn-reset">Reset</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="mortgage-results-card reveal-right">
+          <h2 class="results-card-title">Results</h2>
+          
+          <div class="result-item">
+            <h4>Monthly Payment (EMI)</h4>
+            <div class="value" id="monthly-payment">$0.00</div>
+          </div>
+          
+          <div class="result-item small">
+            <h4>Principal Amount</h4>
+            <div class="value" id="principal-amount">$0.00</div>
+          </div>
+
+          <div class="result-item small">
+            <h4>Total Interest</h4>
+            <div class="value" id="total-interest">$0.00</div>
+          </div>
+          
+          <div class="result-item small last">
+            <h4>Total Payment (Principal + Interest)</h4>
+            <div class="value" id="total-payment">$0.00</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- Payment Breakdown Section -->
+  <section class="section-padding bg-light summary-section" id="loan-summary-section">
+    <div class="container">
+      <div class="section-header text-center fade-in-up">
+        <h2 class="section-title-large">Loan Summary & Payment Breakdown</h2>
+        <p class="section-subtitle">Visualizing your loan structure</p>
+      </div>
+      <div class="breakdown-layout fade-in-up delay-100">
+        <div class="breakdown-top">
+          <div class="chart-container">
+            <div class="chart-center-content">
+              <span class="chart-label">Total Cost</span>
+              <span class="chart-value" id="bd-total-cost">$0</span>
+            </div>
+            <canvas id="mortgageChart"></canvas>
+          </div>
+          <div class="breakdown-details">
+            <div class="breakdown-item">
+              <span class="color-dot dot-primary"></span>
+              <div class="bd-info">
+                <h4>Principal Amount</h4>
+                <p id="bd-principal">$0</p>
+              </div>
+            </div>
+            <div class="breakdown-item">
+              <span class="color-dot dot-danger"></span>
+              <div class="bd-info">
+                <h4>Total Interest</h4>
+                <p id="bd-interest">$0</p>
+              </div>
+            </div>
+            <div class="breakdown-item">
+              <span class="color-dot dot-success"></span>
+              <div class="bd-info">
+                <h4>Down Payment</h4>
+                <p id="bd-downpayment">$0</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="breakdown-bottom-stats">
+          <div class="stat-box">
+            <i class="fa-solid fa-calendar-days"></i>
+            <div class="stat-info">
+              <h5>Monthly EMI</h5>
+              <p id="bd-monthly-emi">$0</p>
+            </div>
+          </div>
+          <div class="stat-box">
+            <i class="fa-solid fa-percent"></i>
+            <div class="stat-info">
+              <h5>Interest Rate</h5>
+              <p id="bd-interest-rate">0%</p>
+            </div>
+          </div>
+          <div class="stat-box">
+            <i class="fa-solid fa-clock"></i>
+            <div class="stat-info">
+              <h5>Loan Duration</h5>
+              <p id="bd-loan-duration">0 Yrs</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mortgage Tips -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="section-header text-center fade-in-up">
+        <h2 class="section-title-large">Mortgage Tips & Guides</h2>
+        <p class="section-subtitle">Expert advice to help you secure the best mortgage</p>
+      </div>
+      <div class="tips-grid fade-in-up delay-100">
+        <div class="tip-card">
+          <div class="tip-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Improve Credit Score</h3>
+          <p>A higher credit score can significantly lower your interest rates. Pay off debts and avoid opening new credit lines before applying.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+          <h3>Save for Down Payment</h3>
+          <p>Putting down at least 20% can help you avoid Private Mortgage Insurance (PMI) and reduce your overall loan burden.</p>
+        </div>
+        <div class="tip-card">
+          <div class="tip-icon"><i class="fa-solid fa-percent"></i></div>
+          <h3>Compare Interest Rates</h3>
+          <p>Don't settle for the first offer. Shop around and compare rates from different lenders to secure the best deal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="premium-cta-section mortgage-cta-section">
+    <div class="cta-overlay"></div>
+    <div class="cta-image-right fade-in-up delay-100">
+      <img src="../assets/images/agents/agent_neha.png" alt="Real Estate Expert" class="expert-img">
+    </div>
+    <div class="container relative">
+      <div class="cta-grid">
+        <div class="cta-content-left fade-in-up">
+          <h2 class="cta-title">Get in Touch</h2>
+          <p class="cta-desc">We're here to help you find your dream property. Contact our expert team today.</p>
+          <div class="cta-buttons">
+            <a href="contact.html" class="cta-btn custom-cute-btn" style="padding: 0.6rem 1.5rem; font-size: 0.95rem; font-weight: 600; border-radius: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; box-shadow: 0 10px 25px rgba(255,255,255,0.1); border: 1.5px solid rgba(255,255,255,0.3); background-color: rgba(255,255,255,0.1); backdrop-filter: blur(5px); color: #fff; text-decoration: none; transition: all 0.3s ease;">
+              Contact Us <i class="fa-solid fa-arrow-right" style="font-size: 0.9em; transform: translateY(1px);"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+                    
   <!-- Footer -->
   <footer class="footer">
     <div class="container">
@@ -170,112 +334,10 @@
     </div>
   </footer>
 
-<!-- Navbar -->
-  <div class="navbar-wrapper" style="position: fixed; top: 0; background: transparent; z-index: 1000;">
-    <nav class="navbar">
-      <div class="nav-left">
-        <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-        <ul class="nav-menu">
-          <li><a href="../index.html" class="nav-link">Home</a></li>
-          <li><a href="properties.html" class="nav-link">Properties</a></li>
-          <li><a href="agents.html" class="nav-link">Agents</a></li>
-          <li><a href="gallery.html" class="nav-link">Gallery</a></li>
-        </ul>
-      </div>
-      <a href="../index.html" class="nav-brand">Estate Hub<span>&trade;</span></a>
-      <div class="nav-right">
-        <ul class="nav-menu" style="margin-right: 1rem;">
-           <li><a href="mortgage.html" class="nav-link">Mortgage</a></li>
-           <li><a href="contact.html" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="nav-actions">
-          <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-          <a href="favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
-              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
-              <span class="fav-count-badge">0</span>
-            </a>
-          <a href="contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
-        </div>
-      </div>
-    </nav>
-  </div>
-
-  <section class="page-hero">
-    <div class="container">
-      <h1 class="fade-in-up">Mortgage Calculator</h1>
-      <p class="fade-in-up delay-100">Estimate your monthly mortgage payments</p>
-    </div>
-  </section>
-
-  <section class="section-padding">
-    <div class="container">
-      <div class="mortgage-layout">
-        
-        <div class="mortgage-form-card fade-in-up delay-200">
-          <h2 style="margin-bottom: 2rem; color:var(--text-color);">Loan Details</h2>
-          <form id="mortgage-form">
-            <div class="mortgage-form-group">
-              <label for="price">Property Price</label>
-              <span class="input-prefix">$</span>
-              <input type="number" id="price" required placeholder="e.g. 500000" min="0">
-            </div>
-            
-            <div class="mortgage-form-group">
-              <label for="down-payment">Down Payment</label>
-              <span class="input-prefix">$</span>
-              <input type="number" id="down-payment" required placeholder="e.g. 100000" min="0">
-            </div>
-            
-            <div class="mortgage-form-group">
-              <label for="interest-rate">Interest Rate (Yearly)</label>
-              <span class="input-prefix" style="left:auto; right:1rem;">%</span>
-              <input type="number" id="interest-rate" required placeholder="e.g. 5.5" step="0.01" min="0" style="padding-left:1rem;">
-            </div>
-            
-            <div class="mortgage-form-group">
-              <label for="loan-term">Loan Duration (Years)</label>
-              <span class="input-prefix" style="left:auto; right:1rem;">Yrs</span>
-              <input type="number" id="loan-term" required placeholder="e.g. 30" min="1" max="50" style="padding-left:1rem;">
-            </div>
-            
-            <div class="btn-group">
-              <button type="submit" class="btn-primary" style="flex:1; border-radius:8px;">Calculate EMI</button>
-              <button type="button" id="btn-reset" class="btn-outline" style="flex:1; border-radius:8px; color:var(--text-color); border-color:var(--border-color);">Reset</button>
-            </div>
-          </form>
-        </div>
-
-        <div class="mortgage-results-card fade-in-up delay-300">
-          <h2 style="margin-bottom: 2rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:1rem;">Results</h2>
-          
-          <div class="result-item">
-            <h4>Monthly Payment (EMI)</h4>
-            <div class="value" id="monthly-payment">$0.00</div>
-          </div>
-          
-          <div class="result-item small">
-            <h4>Principal Amount</h4>
-            <div class="value" id="principal-amount">$0.00</div>
-          </div>
-
-          <div class="result-item small">
-            <h4>Total Interest</h4>
-            <div class="value" id="total-interest">$0.00</div>
-          </div>
-          
-          <div class="result-item small" style="margin-bottom:0;">
-            <h4>Total Payment (Principal + Interest)</h4>
-            <div class="value" id="total-payment">$0.00</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
   <!-- Custom Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="../js/theme.js"></script>
   <script src="../js/app.js"></script>
-  <script src="../js/mortgage.js"></script>
+  <script src="../js/mortgage.js?v=3"></script>
 </body>
 </html>
