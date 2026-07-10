@@ -188,12 +188,38 @@
     justify-content: center;
   }
 
-  .newsletter-form {
+  .newsletter-form,
+  .cta-newsletter-form {
     flex-direction: column;
+    border-radius: 20px;
+    padding: 1rem 0;
+    background: transparent;
+    box-shadow: none;
+    gap: 1rem;
   }
 
-  .newsletter-form button {
+  .cta-newsletter-form input {
     width: 100%;
+    border-radius: 30px;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+
+  .newsletter-form button,
+  .cta-newsletter-form button {
+    width: 100%;
+    margin: 0;
+    border-radius: 30px;
+  }
+  
+  .cta-wrapper {
+    padding: 3rem 1.5rem;
+  }
+  
+  .cta-wrapper h2 {
+    font-size: 2rem !important;
+    word-break: break-word;
   }
 
   /* --- Forms & Inputs --- */
@@ -209,9 +235,97 @@
     gap: 1.5rem;
   }
   
+  /* --- Global Mobile Centering --- */
+  .hero-content,
+  .section-title,
+  .cta-wrapper {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- Fix Why Choose Us Section on Mobile --- */
+  .why-scroll-section {
+    background: var(--bg-color) !important;
+  }
+
+  .why-scroll-container {
+    padding: 1rem;
+  }
+  
+  .why-sticky-left {
+    align-items: center;
+    text-align: center;
+    padding-right: 0;
+  }
+  
+  .why-sticky-title h2 {
+    font-size: 2.2rem !important;
+    color: var(--text-color) !important;
+  }
+  
+  .why-sticky-title p {
+    color: var(--text-light) !important;
+  }
+
+  .why-heading {
+    color: var(--text-color) !important;
+  }
+  
+  .why-description {
+    color: var(--text-light) !important;
+  }
+
+  .why-image-wrapper {
+    aspect-ratio: 4/3 !important;
+    max-width: 100% !important;
+    margin: 0 auto;
+  }
+
+  .why-scroll-right {
+    padding-left: 0;
+  }
+
+  .why-scroll-block {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    justify-content: center;
+  }
+
+  .why-block-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
   /* --- Miscellaneous --- */
   .amenities-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  /* --- Horizontal Scroll for Featured Properties on Home Page --- */
+  #featured-properties-grid {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 1.5rem;
+    padding-bottom: 1rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  #featured-properties-grid::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+  
+  #featured-properties-grid .property-card {
+    flex: 0 0 85%;
+    scroll-snap-align: start;
   }
 }
 
