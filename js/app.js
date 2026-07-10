@@ -1,19 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
   // --- Loader Animation ---
   const loader = document.querySelector('.loader-wrapper');
-  const hideLoader = () => {
-    if (loader) {
-      setTimeout(() => {
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.style.display = 'none', 500);
-      }, 500); // 500ms delay for visual effect
-    }
-  };
-
-  if (document.readyState === 'complete') {
-    hideLoader();
-  } else {
-    window.addEventListener('load', hideLoader);
+  const countElement = document.getElementById('load-count');
+  
+  if (loader && countElement) {
+    let count = 0;
+    const duration = 6000; // 6.0s to match CSS animation
+    const intervalTime = 25;
+    const increment = 100 / (duration / intervalTime);
+    
+    const counterInterval = setInterval(() => {
+      count += increment;
+      if (count >= 100) {
+        count = 100;
+        clearInterval(counterInterval);
+        // Wait a tiny bit at 100% before hiding
+        setTimeout(() => {
+          loader.classList.add('zoom-reveal');
+          setTimeout(() => loader.style.display = 'none', 1800); // Wait 1.8s for slow zoom animation
+        }, 300); // 300ms pause at 100% before zoom starts
+      }
+      countElement.textContent = Math.floor(count);
+    }, intervalTime);
+  } else if (loader) {
+    // Fallback
+    setTimeout(() => {
+      loader.classList.add('zoom-reveal');
+      setTimeout(() => loader.style.display = 'none', 1800);
+    }, 6000);
   }
 
   // --- Sticky Navbar (Fixed permanently on top) ---
