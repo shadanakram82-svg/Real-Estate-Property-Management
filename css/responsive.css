@@ -133,6 +133,16 @@
    LARGE MOBILE (576px - 767px)
    ------------------------------------------------------------------------ */
 @media (max-width: 767px) {
+  /* --- Mobile Scroll Performance Fixes --- */
+  html, body {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .hero::before {
+    background-attachment: scroll !important; /* Critical fix for laggy scroll on iOS/Mobile */
+  }
+
   /* --- Typography Adjustments --- */
   .hero-title {
     font-size: 2.8rem;
@@ -166,6 +176,18 @@
   .properties-grid,
   .favorites-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  /* Dark Mode specific tweaks for mobile */
+  [data-theme="dark"] .category-card {
+    background-color: #2e2b26 !important; /* Dark cream / warm tint */
+    border-color: rgba(255, 255, 255, 0.05) !important;
+  }
+  [data-theme="dark"] .category-card h3 {
+    color: #ffffff !important;
+  }
+  [data-theme="dark"] .category-card p {
+    color: #e2e8f0 !important;
   }
 
   .hero-search-wrapper .search-form {
@@ -288,7 +310,7 @@
   }
 
   .why-sticky-left > div:last-child {
-    display: none;
+    display: block; /* Keep CTA intact below the image */
   }
 
   .why-heading {
@@ -326,8 +348,7 @@
   }
 
   .why-mobile-cta {
-    display: block;
-    margin-top: 3rem;
+    display: none; /* Hide the scrolling bottom CTA since the sticky one is restored */
   }
 
   .why-mobile-cta .btn-hover-fill {
@@ -380,8 +401,7 @@
     max-width: 280px !important;
     scroll-snap-align: start;
     margin-bottom: 0 !important;
-    height: max-content !important; /* Force card to fit all its content */
-    min-height: min-content !important;
+    height: auto !important; /* Allow stretch to align with sibling cards */
   }
 
   /* --- Make Property Card View Details CTA smaller for mobile --- */
@@ -408,17 +428,25 @@
   .property-card .property-amenities,
   .property-grid.list-view .property-amenities {
     display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
-    overflow-x: visible !important;
+    flex-wrap: nowrap !important; /* Force single line */
+    gap: 0.3rem !important; /* Tighter gap */
+    overflow-x: auto !important; /* Allow scroll if needed on tiny screens */
     padding-bottom: 0 !important;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .property-card .property-amenities::-webkit-scrollbar,
+  .property-grid.list-view .property-amenities::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
   }
   
   .amenity-item {
-    padding: 0.4rem 0.6rem !important;
-    font-size: 0.8rem !important;
+    padding: 0.4rem !important; /* Tighter padding */
+    font-size: 0.75rem !important; /* Smaller text to fit */
     white-space: nowrap !important;
-    justify-content: flex-start !important;
+    justify-content: center !important;
+    flex: 1; /* Make them equal width */
   }
 
   /* --- Property Badges on Mobile --- */
@@ -500,8 +528,8 @@
   .dashboard-stats {
     display: flex !important;
     overflow-x: auto !important;
-    gap: 1rem !important;
     padding-bottom: 1rem !important; /* space for scrollbar/shadows */
+    margin-top: 1.5rem !important; /* Create gap from the section above */
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
@@ -513,6 +541,10 @@
     flex: 0 0 135px !important;
     scroll-snap-align: start;
     width: 135px !important;
+    margin-right: 0.8rem !important; /* Keep the gap between boxes small */
+  }
+  .dashboard-stats > div:last-child {
+    margin-right: 0 !important;
   }
 
   /* --- Buttons --- */

@@ -209,7 +209,7 @@
       display: flex;
       gap: 1.5rem;
       padding: 1.5rem 2rem;
-      background: var(--bg-alt, #f8fafc);
+      background: rgba(37, 99, 235, 0.05);
       border-radius: 20px;
       margin-bottom: 2.5rem;
       box-shadow: 0 10px 30px rgba(0,0,0,0.03);
@@ -311,6 +311,11 @@
       .details-main { padding: 1.5rem; }
       .amenities-grid { grid-template-columns: 1fr; }
       .reviews-grid { grid-template-columns: 1fr; }
+      
+      [data-theme="dark"] .details-info-item i {
+        color: var(--primary-color);
+        background: #ffffff; /* White background as requested */
+      }
       
       .details-price {
         font-size: 2rem;

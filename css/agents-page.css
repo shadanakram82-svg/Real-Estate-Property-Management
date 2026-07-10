@@ -477,29 +477,42 @@
       }
     }
 
-    /* Modern Scroll Animations (Desktop Only) */
+    /* Modern Scroll Animations */
     @supports (animation-timeline: view()) {
-      @media (min-width: 901px) {
-        .agent-modern-card {
-          animation: reveal-diagonal-right linear both;
-          animation-timeline: view();
-          animation-range: entry 5% cover 30%;
-        }
-        
-        .agent-modern-img-wrapper {
-          animation: slide-in-left linear both;
-          animation-timeline: view();
-          animation-range: entry 5% cover 35%;
-        }
+      .agent-modern-card {
+        animation: reveal-diagonal-right linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 30%;
+      }
+      
+      .agent-modern-img-wrapper {
+        animation: slide-in-left linear both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 35%;
+      }
 
+      @keyframes reveal-diagonal-right {
+        0% { opacity: 0; transform: translate(150px, 100px); }
+        100% { opacity: 1; transform: translate(0, 0); }
+      }
+      
+      @keyframes slide-in-left {
+        0% { opacity: 0; transform: translateX(-100px) rotate(-5deg); }
+        100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+      }
+      
+      /* Mobile Adjustments for Animations */
+      @media (max-width: 900px) {
+        .agent-modern-card {
+          animation-range: entry 2% cover 20%;
+        }
         @keyframes reveal-diagonal-right {
-          0% { opacity: 0; transform: translate(150px, 100px); }
+          0% { opacity: 0; transform: translateY(40px); } /* Only move vertically to prevent X-axis overflow */
           100% { opacity: 1; transform: translate(0, 0); }
         }
-        
         @keyframes slide-in-left {
-          0% { opacity: 0; transform: translateX(-100px) rotate(-5deg); }
-          100% { opacity: 1; transform: translateX(0) rotate(0deg); }
+          0% { opacity: 0; transform: translateY(30px) rotate(-3deg); } /* Only move vertically to prevent X-axis overflow */
+          100% { opacity: 1; transform: translate(0) rotate(0deg); }
         }
       }
     }
