@@ -101,8 +101,12 @@
     z-index: 100;
   }
   
-  .dark-mode .nav-menu.active {
+  [data-theme="dark"] .nav-menu.active {
     background: rgba(15, 23, 42, 0.98);
+  }
+
+  .mobile-only {
+    display: block;
   }
 
   .menu-toggle {
@@ -250,7 +254,7 @@
 
   /* --- Fix Why Choose Us Section on Mobile --- */
   .why-scroll-section {
-    background: var(--bg-color) !important;
+    background: #111 !important;
   }
 
   .why-scroll-container {
@@ -258,42 +262,80 @@
   }
   
   .why-sticky-left {
+    position: sticky !important;
+    top: 70px !important;
+    height: 50vh !important;
+    z-index: 10;
+    background: #111;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     text-align: center;
     padding-right: 0;
+    margin-bottom: 0 !important;
+    padding: 1rem 0;
   }
   
   .why-sticky-title h2 {
-    font-size: 2.2rem !important;
-    color: var(--text-color) !important;
+    font-size: 1.8rem !important;
+    color: #fff !important;
+    margin-bottom: 0.5rem !important;
   }
   
   .why-sticky-title p {
-    color: var(--text-light) !important;
+    display: none;
+  }
+
+  .why-sticky-left > div:last-child {
+    display: none;
   }
 
   .why-heading {
-    color: var(--text-color) !important;
+    color: #fff !important;
+    font-size: 1.5rem !important;
   }
   
   .why-description {
-    color: var(--text-light) !important;
+    color: #aaa !important;
+    font-size: 1rem !important;
   }
 
   .why-image-wrapper {
-    aspect-ratio: 4/3 !important;
-    max-width: 100% !important;
+    aspect-ratio: 16/9 !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 35vh;
     margin: 0 auto;
   }
 
   .why-scroll-right {
     padding-left: 0;
+    position: relative;
+    z-index: 5;
+    padding-bottom: 20vh;
   }
 
   .why-scroll-block {
     text-align: center;
-    margin-bottom: 2.5rem;
+    min-height: 45vh !important;
+    margin-bottom: 0 !important;
     justify-content: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .why-mobile-cta {
+    display: block;
+    margin-top: 3rem;
+  }
+
+  .why-mobile-cta .btn-hover-fill {
+    color: var(--primary-color) !important;
+  }
+  
+  .why-mobile-cta .btn-hover-fill:hover {
+    color: #fff !important;
   }
 
   .why-block-content {
@@ -310,22 +352,48 @@
   /* --- Horizontal Scroll for Featured Properties on Home Page --- */
   #featured-properties-grid {
     display: flex !important;
-    overflow-x: auto;
+    overflow-x: auto !important;
+    overflow-y: hidden !important; /* Ensure NO vertical scroll */
     scroll-snap-type: x mandatory;
     gap: 1.5rem;
-    padding-bottom: 1rem;
+    padding-bottom: 3rem !important; /* Provide ample room for shadow and content */
+    padding-top: 1rem !important;
+    height: auto !important;
+    align-items: stretch !important;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   #featured-properties-grid::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
   }
   
   #featured-properties-grid .property-card {
-    flex: 0 0 85%;
-    scroll-snap-align: start;
+    flex: 0 0 85% !important;
+    scroll-snap-align: center !important; /* Center snap for better UX */
+    height: max-content !important; /* Force card to fit all its content */
+    min-height: min-content !important;
+  }
+
+  /* --- Make Property Card View Details CTA smaller for mobile --- */
+  .property-card .btn-details {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.85rem !important;
+    white-space: nowrap !important;
+  }
+
+  /* --- Make Featured Section CTA smaller and beautiful for mobile --- */
+  #featured-section .btn-primary {
+    font-size: 0.8rem !important;
+    padding: 0.5rem 1.5rem !important;
+    border-radius: 50px !important;
+    background: transparent !important;
+    color: var(--primary-color) !important;
+    border: 1.5px solid var(--primary-color) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.5px;
+    box-shadow: none !important;
   }
 }
 

@@ -61,6 +61,28 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     });
+    
+    // Dynamically inject right-side nav links and CTA into mobile hamburger menu
+    const navRightMenu = document.querySelector('.nav-right .nav-menu');
+    const bookVisitBtn = document.querySelector('.nav-actions .btn-primary');
+    
+    if (navRightMenu) {
+      navRightMenu.querySelectorAll('li').forEach(li => {
+        const clone = li.cloneNode(true);
+        clone.classList.add('mobile-only');
+        navMenu.appendChild(clone);
+      });
+    }
+    
+    if (bookVisitBtn) {
+      const btnLi = document.createElement('li');
+      btnLi.classList.add('mobile-only');
+      const btnClone = bookVisitBtn.cloneNode(true);
+      btnClone.style.display = 'inline-block';
+      btnClone.style.marginTop = '0.5rem';
+      btnLi.appendChild(btnClone);
+      navMenu.appendChild(btnLi);
+    }
   }
 
   // --- Reveal on Scroll (Basic setup for later use) ---
