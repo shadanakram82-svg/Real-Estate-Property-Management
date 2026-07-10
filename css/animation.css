@@ -12,6 +12,10 @@
   transition: opacity 1.8s cubic-bezier(0.7, 0, 0.3, 1), visibility 1.8s;
 }
 
+html.loader-seen .loader-wrapper {
+  display: none !important;
+}
+
 .loader-wrapper.zoom-reveal {
   opacity: 0;
   visibility: hidden;

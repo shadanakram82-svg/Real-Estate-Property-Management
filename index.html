@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estate Hub | Float Into Your Next Self</title>
-  <meta name="description" content="Estate Hub - Modern Real Estate Property Management Website">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>Estate Hub | Welcome</title>
   
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/style.css?v=44">
-  <link rel="stylesheet" href="css/responsive.css?v=30">
-  <link rel="stylesheet" href="css/animation.css?v=30">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animation.css">
+  <style>
+    /* Ensure body is black and scrolling is disabled during splash screen */
+    body, html {
+      margin: 0;
+      padding: 0;
+      background-color: #000000;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
 </head>
 <body>
 
@@ -24,423 +30,36 @@
     </div>
   </div>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    
-    <!-- Navbar -->
-    <div class="navbar-wrapper">
-      <nav class="navbar">
-        <div class="nav-left">
-          <button id="menu-toggle" class="menu-toggle"><i class="fa-solid fa-bars"></i></button>
-          <ul class="nav-menu">
-            <li><a href="index.html" class="nav-link active">Home</a></li>
-            <li><a href="pages/properties.html" class="nav-link">Properties</a></li>
-            <li><a href="pages/agents.html" class="nav-link">Agents</a></li>
-            <li><a href="pages/gallery.html" class="nav-link">Gallery</a></li>
-          </ul>
-        </div>
-
-        <a href="index.html" class="nav-brand">
-          Estate Hub<span>&trade;</span>
-        </a>
-
-        <div class="nav-right">
-          <ul class="nav-menu" style="margin-right: 1rem;">
-             <li><a href="pages/mortgage.html" class="nav-link">Mortgage</a></li>
-             <li><a href="pages/contact.html" class="nav-link">Contact</a></li>
-          </ul>
-          <div class="nav-actions">
-            <button id="theme-toggle" class="theme-toggle" title="Toggle Theme"><i class="fa-solid fa-moon"></i></button>
-            <a href="pages/favorites.html" class="theme-toggle" title="Favorites" style="position: relative;">
-              <i class="fa-solid fa-heart" style="color: #ef4444;"></i>
-              <span class="fav-count-badge">0</span>
-            </a>
-            <a href="pages/contact.html" class="btn-primary" style="padding: 0.6rem 1.5rem; border-radius: 20px; font-size: 0.9rem; margin-left: 0.5rem;">Book Visit</a>
-          </div>
-        </div>
-      </nav>
-    </div>
-
-    <!-- Hero Content -->
-    <div class="hero-content">
-      <h1 class="hero-title fade-in-up">Float Into<br>Your Next Self</h1>
-      <p class="hero-subtitle fade-in-up delay-200">
-        Step off the boardwalk and onto a sanctuary suspended above turquoise depth.
-      </p>
-    </div>
-
-    <!-- Search Form (Glassmorphism) -->
-    <div class="hero-search-wrapper fade-in-up delay-400">
-      <form action="pages/properties.html" class="search-form">
-        
-        <div class="form-group">
-          <label for="location">Location</label>
-          <input type="text" id="location" name="location" class="form-input" placeholder="City or zip code">
-        </div>
-
-        <div class="form-group">
-          <label for="property-type">Property Type</label>
-          <select id="property-type" name="type" class="form-input form-select">
-            <option value="">Select type</option>
-            <option value="Apartment">Apartment</option>
-            <option value="Villa">Villa</option>
-            <option value="Luxury Home">Luxury Home</option>
-            <option value="Commercial">Commercial</option>
-            <option value="Office">Office</option>
-            <option value="Farm House">Farm House</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="check-in">Move-in Date</label>
-          <input type="date" id="check-in" class="form-input">
-        </div>
-
-        <div class="form-group">
-          <label for="price-range">Max Price</label>
-          <select id="price-range" name="price" class="form-input form-select">
-            <option value="">Any price</option>
-            <option value="30000000">Up to 3 Cr</option>
-            <option value="50000000">Up to 5 Cr</option>
-            <option value="100000000">Up to 10 Cr</option>
-            <option value="200000000">Up to 20 Cr</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn-search">Search</button>
-      </form>
-    </div>
-
-  </section>
-
-  <!-- Featured Categories -->
-  <section class="categories section-padding">
-    <div class="container">
-      <div class="section-title fade-in-up">
-        <h2>Explore Categories</h2>
-        <p>Find your perfect property from our diverse categories</p>
-      </div>
-      <div class="category-grid">
-        <a href="pages/properties.html?type=Apartment" class="category-card reveal">
-          <i class="fa-solid fa-building"></i>
-          <h3>Apartment</h3>
-          <p>120 Properties</p>
-        </a>
-        <a href="pages/properties.html?type=Villa" class="category-card reveal delay-100">
-          <i class="fa-solid fa-house"></i>
-          <h3>Villa</h3>
-          <p>85 Properties</p>
-        </a>
-        <a href="pages/properties.html?type=Office" class="category-card reveal delay-200">
-          <i class="fa-solid fa-briefcase"></i>
-          <h3>Office</h3>
-          <p>42 Properties</p>
-        </a>
-        <a href="pages/properties.html?type=Commercial" class="category-card reveal delay-300">
-          <i class="fa-solid fa-store"></i>
-          <h3>Commercial</h3>
-          <p>23 Properties</p>
-        </a>
-        <a href="pages/properties.html?type=Luxury%20Home" class="category-card reveal delay-400">
-          <i class="fa-solid fa-gem"></i>
-          <h3>Luxury Home</h3>
-          <p>15 Properties</p>
-        </a>
-        <a href="pages/properties.html?type=Farm%20House" class="category-card reveal delay-500">
-          <i class="fa-solid fa-tractor"></i>
-          <h3>Farm House</h3>
-          <p>10 Properties</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Featured Properties -->
-  <section class="properties bg-light" id="featured-section">
-    <div class="properties-sticky">
-      <div class="container">
-        <div class="section-title">
-          <h2>Featured Properties</h2>
-          <p>Hand-picked premium properties for you</p>
-        </div>
-        <!-- Dynamic properties container -->
-        <div class="property-grid" id="featured-properties-grid">
-          <!-- Cards will be injected via JS (each card gets scroll-item class) -->
-        </div>
-        <div class="text-center mt-3 fade-in-up delay-300">
-          <a href="pages/properties.html" class="btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.9rem;">Explore All Properties</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Popular Locations -->
-  <section class="locations section-padding">
-    <div class="container">
-      <div class="section-title fade-in-up">
-        <h2>Popular Locations</h2>
-        <p>Explore properties in top destinations</p>
-      </div>
-      <div class="location-grid">
-        <div class="location-card reveal">
-          <img src="assets/images/gallery/img_8584a238.jpg" alt="Mumbai" style="object-position: top; transform-origin: top;">
-          <div class="location-overlay">
-            <h3>Mumbai</h3>
-            <p>45 Properties</p>
-            <a href="#" class="btn-outline">Explore</a>
-          </div>
-        </div>
-        <div class="location-card reveal delay-100">
-          <img src="assets/images/gallery/img_ee650b5f.jpg" alt="Delhi">
-          <div class="location-overlay">
-            <h3>Delhi</h3>
-            <p>32 Properties</p>
-            <a href="#" class="btn-outline">Explore</a>
-          </div>
-        </div>
-        <div class="location-card reveal delay-200">
-          <img src="assets/images/gallery/img_57aca490.jpg" alt="Bangalore">
-          <div class="location-overlay">
-            <h3>Bangalore</h3>
-            <p>28 Properties</p>
-            <a href="#" class="btn-outline">Explore</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Customer Testimonials -->
-  <section class="testimonials section-padding">
-    <div class="container">
-      <div class="section-title fade-in-up">
-        <h2>What Our Clients Say</h2>
-        <p>Read success stories from our happy customers</p>
-      </div>
-      <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <img src="assets/images/properties/img_59753e8d.jpg" alt="Beautiful Home" class="testimonial-bg">
-          <div class="testimonial-overlay">
-            <div class="testimonial-stars">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <p class="testimonial-text">"Estate Hub made finding my dream home an absolute breeze. Their team was professional, and the verified listings gave me complete peace of mind."</p>
-            <div class="testimonial-author">
-              <img src="assets/images/gallery/img_e3011561.jpg" alt="Priya Sharma">
-              <div>
-                <h4>Priya Sharma</h4>
-                <p>Homeowner</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <img src="assets/images/properties/img_72a2bcb3.jpg" alt="Mansion" class="testimonial-bg">
-          <div class="testimonial-overlay">
-            <div class="testimonial-stars">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
-            </div>
-            <p class="testimonial-text">"The Best Price Guarantee is real! I compared properties across multiple platforms, but Estate Hub offered the best deals and the most transparent process."</p>
-            <div class="testimonial-author">
-              <img src="assets/images/gallery/img_9080ffdf.jpg" alt="Rahul Desai">
-              <div>
-                <h4>Rahul Desai</h4>
-                <p>Real Estate Investor</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <img src="assets/images/gallery/img_ca9a6d6f.jpg" alt="Modern Villa" class="testimonial-bg">
-          <div class="testimonial-overlay">
-            <div class="testimonial-stars">
-              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-            </div>
-            <p class="testimonial-text">"I sold my villa through Estate Hub and the process was incredibly smooth. The 24/7 support answered all my queries instantly. Highly recommended!"</p>
-            <div class="testimonial-author">
-              <img src="assets/images/gallery/img_6f520af9.jpg" alt="Anjali Verma">
-              <div>
-                <h4>Anjali Verma</h4>
-                <p>Seller</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us Sticky Scroll -->
-  <section class="why-scroll-section bg-split" id="why-us-section">
-    <div class="why-scroll-container">
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loader = document.querySelector('.loader-wrapper');
+      const countElement = document.getElementById('load-count');
       
-      <!-- Sticky Left: Images and Title -->
-      <div class="why-sticky-left">
-        <div class="why-sticky-title">
-          <h2 style="font-size: 3rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; letter-spacing: -1px;">Why Choose Us</h2>
-          <p style="color: #888; font-size: 1.1rem; margin-bottom: 2rem;">We provide full service at every step.</p>
-        </div>
-        <div class="why-image-wrapper">
-          <img src="assets/images/gallery/img_ca9a6d6f.jpg" alt="Strategy" class="why-scroll-img active" data-index="0">
-          <img src="assets/images/properties/img_72a2bcb3.jpg" alt="Design" class="why-scroll-img" data-index="1">
-          <img src="assets/images/properties/img_59753e8d.jpg" alt="Security" class="why-scroll-img" data-index="2">
-          <img src="assets/images/gallery/img_09f8e661.jpg" alt="Value" class="why-scroll-img" data-index="3">
-        </div>
-        <div style="width: 100%; max-width: 420px; text-align: center; margin-top: 1.2rem;">
-          <a href="pages/contact.html" class="btn-hover-fill">
-            Get in Touch <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
-
-      <!-- Scroll Right: Text Blocks -->
-      <div class="why-scroll-right">
-        <!-- Block 1 -->
-        <div class="why-scroll-block why-step" data-index="0">
-          <div class="why-block-content">
-            <div class="why-step-number">01</div>
-            <h2 class="why-heading">Experienced Agents</h2>
-            <p class="why-description">Find the best agents who understand your requirements perfectly. Our team is skilled in real estate strategy and market analysis to guide you.</p>
-          </div>
-        </div>
-
-        <!-- Block 2 -->
-        <div class="why-scroll-block why-step" data-index="1">
-          <div class="why-block-content">
-            <div class="why-step-number">02</div>
-            <h2 class="why-heading">Verified Listings</h2>
-            <p class="why-description">All our properties are 100% verified and secure to purchase. We ensure every aspect of your brand new home is cohesive and well aligned.</p>
-          </div>
-        </div>
-
-        <!-- Block 3 -->
-        <div class="why-scroll-block why-step" data-index="2">
-          <div class="why-block-content">
-            <div class="why-step-number">03</div>
-            <h2 class="why-heading">Secure Payments</h2>
-            <p class="why-description">We offer secure transaction systems for your peace of mind. Every financial aspect of your property journey is seamless and fully protected.</p>
-          </div>
-        </div>
-
-      <!-- Block 4 -->
-        <div class="why-scroll-block why-step" data-index="3">
-          <div class="why-block-content">
-            <div class="why-step-number">04</div>
-            <h2 class="why-heading">Best Price Guarantee</h2>
-            <p class="why-description">We ensure you get the best market value for your property. Our experts negotiate to make sure you get the most out of your investment.</p>
-          </div>
-        </div>
-
-        <!-- Mobile CTA -->
-        <div class="why-mobile-cta" style="width: 100%; text-align: center; padding-bottom: 2rem;">
-          <a href="pages/contact.html" class="btn-hover-fill">
-            Get in Touch <i class="fa-solid fa-arrow-right"></i>
-          </a>
-        </div>
-      </div>
+      let count = 0;
+      const duration = 6000; // 6.0s to match CSS animation
+      const intervalTime = 25;
+      const increment = 100 / (duration / intervalTime);
       
-    </div>
-  </section>
+      const counterInterval = setInterval(() => {
+        count += increment;
+        if (count >= 100) {
+          count = 100;
+          clearInterval(counterInterval);
+          
+          // Wait a tiny bit at 100% before triggering zoom
+          setTimeout(() => {
+            loader.classList.add('zoom-reveal');
+            
+            // Redirect to home.html as the zoom finishes
+            setTimeout(() => {
+              window.location.replace('home.html'); // Use replace to avoid back-button loops
+            }, 1700); 
+          }, 300);
+        }
+        countElement.textContent = Math.floor(count);
+      }, intervalTime);
+    });
+  </script>
 
-  <!-- Statistics Section -->
-  <section class="stats-section section-padding">
-    <div class="container">
-      <div class="stats-grid reveal">
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-house-circle-check"></i></div>
-          <h2 class="stat-number" data-target="1500">0</h2>
-          <p>Properties Sold</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-trophy"></i></div>
-          <h2 class="stat-number" data-target="250">0</h2>
-          <p>Awards Gained</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
-          <h2 class="stat-number" data-target="10">0</h2>
-          <p>Years Experience</p>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon"><i class="fa-solid fa-face-smile"></i></div>
-          <h2 class="stat-number" data-target="3200">0</h2>
-          <p>Happy Clients</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Newsletter CTA Section -->
-  <section class="cta-section section-padding">
-    <div class="container">
-      <div class="cta-wrapper reveal">
-        <h2>Subscribe to Our Newsletter</h2>
-        <p>Get the latest property news, exclusive offers, and market insights delivered straight to your inbox.</p>
-        <form class="cta-newsletter-form">
-          <input type="email" placeholder="Enter your email address..." required>
-          <button type="submit" class="btn-primary cta-btn">Subscribe Now</button>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-about">
-          <a href="index.html" class="footer-brand">
-            Estate Hub<span>&trade;</span>
-          </a>
-          <p><strong>Estate Hub</strong> is your premier partner in finding the perfect property. We make real estate simple, transparent, and secure.</p>
-          <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-twitter"></i></a>
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
-          </div>
-        </div>
-        <div class="footer-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="pages/properties.html">Properties</a></li>
-            <li><a href="pages/agents.html">Agents</a></li>
-            <li><a href="pages/contact.html">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="footer-links">
-          <h3>Useful Links</h3>
-          <ul>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="pages/mortgage.html">Mortgage Calculator</a></li>
-          </ul>
-        </div>
-        <div class="footer-contact">
-          <h3>Contact Us</h3>
-          <ul class="contact-list">
-            <li><i class="fa-solid fa-location-dot"></i> Andheri West, Mumbai, MH</li>
-            <li><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
-            <li><i class="fa-solid fa-envelope"></i> hello@estatehub.in</li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Estate Hub. All rights reserved.</p>
-      </div>
-    </div>
-    
-    <!-- Massive Watermark for Product Name -->
-    <div class="footer-watermark">
-      ESTATE HUB
-    </div>
-  </footer>
-
-  <!-- Custom Scripts -->
-  <script src="js/data.js"></script>
-  <script src="js/theme.js"></script>
-  <script src="js/app.js?v=21"></script>
 </body>
 </html>

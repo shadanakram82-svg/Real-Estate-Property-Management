@@ -1,33 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // --- Loader Animation ---
-  const loader = document.querySelector('.loader-wrapper');
-  const countElement = document.getElementById('load-count');
-  
-  if (loader && countElement) {
-    let count = 0;
-    const duration = 6000; // 6.0s to match CSS animation
-    const intervalTime = 25;
-    const increment = 100 / (duration / intervalTime);
-    
-    const counterInterval = setInterval(() => {
-      count += increment;
-      if (count >= 100) {
-        count = 100;
-        clearInterval(counterInterval);
-        // Wait a tiny bit at 100% before hiding
-        setTimeout(() => {
-          loader.classList.add('zoom-reveal');
-          setTimeout(() => loader.style.display = 'none', 1800); // Wait 1.8s for slow zoom animation
-        }, 300); // 300ms pause at 100% before zoom starts
-      }
-      countElement.textContent = Math.floor(count);
-    }, intervalTime);
-  } else if (loader) {
-    // Fallback
-    setTimeout(() => {
-      loader.classList.add('zoom-reveal');
-      setTimeout(() => loader.style.display = 'none', 1800);
-    }, 6000);
+  // --- Splash Screen Redirect on Reload ---
+  // If the user refreshes the page manually, redirect them to the standalone loader (index.html)
+  if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+    const isSubPage = window.location.pathname.includes('/pages/');
+    const indexPath = isSubPage ? '../index.html' : 'index.html';
+    window.location.replace(indexPath);
+    return; // Stop execution to allow quick redirect
   }
 
   // --- Sticky Navbar (Fixed permanently on top) ---
