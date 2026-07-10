@@ -119,6 +119,7 @@
                   border-radius: 50px;
                   box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
                   gap: 0.25rem;
+                  max-width: 100%;
                 }
                 .property-view-tab {
                   border: none;
@@ -142,6 +143,21 @@
                   background: var(--primary-color);
                   color: white;
                   box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+                }
+                
+                /* Mobile tweaks so tabs fit without scrolling */
+                @media (max-width: 576px) {
+                  .property-view-tabs {
+                    width: 100%;
+                    justify-content: space-between;
+                  }
+                  .property-view-tab {
+                    flex: 1;
+                    justify-content: center;
+                    padding: 0.4rem 0.2rem;
+                    font-size: 0.75rem;
+                    gap: 0.3rem;
+                  }
                 }
               </style>
               <div class="property-view-tabs">

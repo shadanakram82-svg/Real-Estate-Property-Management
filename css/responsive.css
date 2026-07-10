@@ -395,6 +395,62 @@
     letter-spacing: 0.5px;
     box-shadow: none !important;
   }
+
+  /* --- Fix Property Amenities Layout on Mobile --- */
+  .property-card .property-amenities,
+  .property-grid.list-view .property-amenities {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.5rem !important;
+    overflow-x: visible !important;
+    padding-bottom: 0 !important;
+  }
+  
+  .amenity-item {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.8rem !important;
+    white-space: nowrap !important;
+    justify-content: flex-start !important;
+  }
+
+  /* --- Property Badges on Mobile --- */
+  .property-badge {
+    left: 0.5rem !important;
+  }
+  
+  .property-type {
+    top: auto !important;
+    bottom: 0.5rem !important;
+    right: auto !important;
+    left: 0.5rem !important;
+    width: max-content !important;
+    white-space: nowrap !important;
+    margin: 0 !important;
+    transform: scale(0.9);
+    transform-origin: bottom left;
+  }
+  
+  .property-badge + .property-type {
+    top: auto !important;
+  }
+
+  /* --- Fix Property Title Truncation on Mobile --- */
+  .property-title {
+    white-space: normal !important;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2 !important;
+    -webkit-box-orient: vertical !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.3rem !important;
+  }
+
+  /* --- Fix Sort-By Dropdown Cut-off on Mobile --- */
+  .properties-header .custom-select-wrapper .custom-options {
+    left: auto !important;
+    right: 0 !important;
+  }
 }
 
 /* ------------------------------------------------------------------------

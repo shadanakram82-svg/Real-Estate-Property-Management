@@ -35,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${p.image}" class="compare-img" alt="${p.title}">
                 <h3 style="color:#ffffff; font-size:1.2rem; font-weight: 700; margin-bottom: 0.2rem;">${p.title}</h3>
                 <p style="color:#94a3b8; font-size: 0.95rem;"><i class="fa-solid fa-location-dot" style="color: var(--primary-color);"></i> ${p.location}</p>
-                <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1.2rem;">
-                  <a href="details.html?id=${p.id}" class="btn-outline" style="color:var(--primary-color); border-color:var(--primary-color); padding:0.4rem 1rem; font-size:0.8rem; border-radius: 8px;">View Details</a>
-                  <button class="cta-btn-danger remove-compare" data-id="${p.id}" style="padding:0.4rem 1rem; font-size:0.8rem; border-radius: 8px;"><i class="fa-solid fa-trash-can"></i> Remove</button>
+                <div style="display: flex; flex-wrap: nowrap; gap: 0.3rem; justify-content: center; margin-top: 1.2rem;">
+                  <a href="details.html?id=${p.id}" class="btn-outline" style="color:var(--primary-color); border-color:var(--primary-color); padding:0.4rem 0.5rem; font-size:0.75rem; border-radius: 8px; flex: 1; text-align: center; min-width: 0; white-space: normal;">View Details</a>
+                  <button class="cta-btn-danger remove-compare" data-id="${p.id}" style="padding:0.4rem 0.5rem; font-size:0.75rem; border-radius: 8px; flex: 1; text-align: center; min-width: 0; white-space: normal;"><i class="fa-solid fa-trash-can"></i> Remove</button>
                 </div>
               </td>
             `).join('')}

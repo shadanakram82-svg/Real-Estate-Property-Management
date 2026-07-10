@@ -51,6 +51,8 @@
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--border-color);
+      flex-shrink: 0;
+      aspect-ratio: 1 / 1;
     }
     .reviewer-info h4 {
       margin: 0 0 0.2rem 0;
@@ -274,7 +276,7 @@
     
     /* Sidebar Agent Form */
     .agent-card { text-align: center; margin-bottom: 2rem; }
-    .agent-card img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; }
+    .agent-card img { width: 100px; height: 100px; border-radius: 50%; margin-bottom: 1rem; object-fit: cover; flex-shrink: 0; aspect-ratio: 1 / 1; }
     
     .contact-form .form-group { margin-bottom: 1rem; }
     .contact-form input, .contact-form textarea {
@@ -292,8 +294,27 @@
       .details-sidebar { width: 100%; flex: none; position: static; }
       .details-info-bar { flex-wrap: wrap; }
       .amenities-grid { grid-template-columns: repeat(2, 1fr); }
+      
+      /* Fix Details Header Overflow on Tablet/Mobile */
+      .details-header {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: flex-start;
+      }
+      .details-price {
+        font-size: 2.2rem;
+        word-break: break-word;
+      }
     }
     @media (max-width: 576px) {
       .details-main { padding: 1.5rem; }
       .amenities-grid { grid-template-columns: 1fr; }
+      
+      .details-price {
+        font-size: 2rem;
+      }
+      #prop-title {
+        font-size: 1.8rem;
+        line-height: 1.2;
+      }
     }
