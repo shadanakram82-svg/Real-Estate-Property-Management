@@ -265,3 +265,163 @@
   color: #fff;
 }
 
+
+/* Dashboard Section Styles */
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.schedule-wrapper, .history-wrapper {
+  background: var(--card-bg);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-color);
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.history-card {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.2rem;
+  border-radius: 12px;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+.history-card:hover {
+  transform: translateY(-2px);
+}
+
+.history-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.history-icon.purple {
+  background: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+}
+
+.history-details h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 0.2rem;
+}
+.history-details p {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0.3rem;
+}
+.history-date {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.status-badge {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50px;
+}
+.status-badge.success {
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+}
+.status-badge.pending {
+  background: rgba(245, 158, 11, 0.1);
+  color: #f59e0b;
+}
+
+@media (max-width: 992px) {
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .schedule-wrapper, .history-wrapper {
+    padding: 2rem;
+  }
+}
+
+/* Contact Submit Button Custom Styles */
+.contact-submit-btn {
+  background: var(--primary-color) !important;
+  color: #fff !important;
+  padding: 0.8rem 2.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+}
+
+.contact-submit-btn:hover {
+  /* Prevent color change on hover, just a slight lift */
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px rgba(37, 99, 235, 0.4);
+}
+
+.contact-submit-btn:active {
+  /* Blue gradient on click */
+  background: linear-gradient(135deg, #1e3a8a, #3b82f6) !important;
+  transform: translateY(0);
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+}
+
+/* Print Styles for PDF Download */
+@media print {
+  body > *:not(#dashboard-section) {
+    display: none !important;
+  }
+  #dashboard-section .schedule-wrapper {
+    display: none !important;
+  }
+  #dashboard-section {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+  }
+  .container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .dashboard-layout {
+    display: block !important;
+  }
+  .history-wrapper {
+    width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  button[onclick="window.print()"] {
+    display: none !important;
+  }
+}

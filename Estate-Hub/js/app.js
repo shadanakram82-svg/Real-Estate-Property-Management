@@ -444,15 +444,16 @@ document.addEventListener('DOMContentLoaded', () => {
     newsletterForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
-      // Premium Success Toast Notification
-      let existingToast = document.querySelector('.premium-toast');
+      // Inline Success Toast Notification
+      let existingToast = newsletterForm.parentNode.querySelector('.inline-toast');
       if (existingToast) existingToast.remove();
       
       const toast = document.createElement('div');
-      toast.className = 'premium-toast fade-in-up';
-      toast.innerHTML = `<i class="fa-solid fa-circle-check" style="color: #22c55e;"></i> Successfully subscribed to the newsletter!`;
+      toast.className = 'inline-toast fade-in-up';
+      toast.innerHTML = `<i class="fa-solid fa-circle-check"></i> Successfully subscribed to the newsletter!`;
       
-      document.body.appendChild(toast);
+      // Append it right after the form, within the wrapper
+      newsletterForm.parentNode.insertBefore(toast, newsletterForm.nextSibling);
       
       // Clear the input
       newsletterForm.reset();
@@ -460,7 +461,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Remove after 3.5 seconds
       setTimeout(() => {
         toast.style.opacity = '0';
-        toast.style.transform = 'translate(-50%, 20px)';
+        toast.style.transform = 'translateY(10px)';
         setTimeout(() => toast.remove(), 400);
       }, 3500);
     });

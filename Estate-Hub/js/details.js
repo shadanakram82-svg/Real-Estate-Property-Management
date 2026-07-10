@@ -34,6 +34,35 @@ document.addEventListener('DOMContentLoaded', () => {
   const baths = document.getElementById('prop-baths');
   const area = document.getElementById('prop-area');
 
+  const viewInterior = document.getElementById('view-interior');
+  const viewExterior = document.getElementById('view-exterior');
+  const view360 = document.getElementById('view-360');
+
+  if (viewInterior && property.interiorImage) {
+    viewInterior.src = property.interiorImage;
+  }
+  if (viewExterior && property.exteriorImage) {
+    viewExterior.src = property.exteriorImage;
+  }
+  if (view360) {
+    const videoElem = view360.querySelector('video');
+    if (videoElem) {
+      if (property.videoPoster) {
+        videoElem.poster = property.videoPoster;
+      }
+      if (property.videoFile) {
+        let sourceElem = videoElem.querySelector('source');
+        if (!sourceElem) {
+           sourceElem = document.createElement('source');
+           videoElem.appendChild(sourceElem);
+        }
+        sourceElem.src = property.videoFile;
+        sourceElem.type = 'video/mp4';
+        videoElem.load();
+      }
+    }
+  }
+
   if (gallery) {
     const img = new Image();
     img.src = property.image;
@@ -102,6 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       showToast('Thank you! Our agent will contact you shortly.', 'fa-solid fa-paper-plane', '#10b981', '#10b981');
       form.reset();
+      const dateInput = document.getElementById('book-visit-date');
+      if (dateInput) {
+        dateInput.value = '';
+      }
     });
   }
 

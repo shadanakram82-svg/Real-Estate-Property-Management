@@ -23,7 +23,10 @@ const propertiesData = [
     parking: "3 Cars",
     status: "Available",
     youtubeId: "8oHyqO2JRFw",
-    videoPoster: "../assets/images/properties/pano_villa.png"
+    videoPoster: "../assets/images/properties/pano_villa.png",
+    videoFile: "../assets/videos/1093768573-preview.mp4",
+    interiorImage: "../assets/images/properties/interior.png",
+    exteriorImage: "../assets/images/properties/exterior.png"
   },
   {
     id: 2,
@@ -49,7 +52,10 @@ const propertiesData = [
     parking: "1 Car",
     status: "Available",
     youtubeId: "YswudqKTiaI",
-    videoPoster: "../assets/images/properties/pano_apt.png"
+    videoPoster: "../assets/images/properties/pano_apt.png",
+    videoFile: "../assets/videos/1108501979-preview.mp4",
+    interiorImage: "../assets/images/properties/apt_int.png",
+    exteriorImage: "../assets/images/properties/apt_ext.png"
   },
   {
     id: 3,
@@ -75,7 +81,10 @@ const propertiesData = [
     parking: "4 Cars",
     status: "Sold",
     youtubeId: "bjFqRoJ-r94",
-    videoPoster: "../assets/images/properties/pano_farm.png"
+    videoPoster: "../assets/images/properties/pano_farm.png",
+    videoFile: "../assets/videos/3492622327-preview.mp4",
+    interiorImage: "../assets/images/properties/farm_int.png",
+    exteriorImage: "../assets/images/properties/farm_ext.png"
   },
   {
     id: 4,
@@ -101,7 +110,10 @@ const propertiesData = [
     parking: "10 Cars",
     status: "Available",
     youtubeId: "Ym8Ty9tDQSs",
-    videoPoster: "../assets/images/properties/pano_office.png"
+    videoPoster: "../assets/images/properties/pano_office.png",
+    videoFile: "../assets/videos/3492623221-preview.mp4",
+    interiorImage: "../assets/images/properties/apt_int.png",
+    exteriorImage: "../assets/images/properties/office_ext.png"
   },
   {
     id: 5,
@@ -127,7 +139,10 @@ const propertiesData = [
     parking: "5 Cars",
     status: "Available",
     youtubeId: "NFe7x0DW6nM",
-    videoPoster: "../assets/images/properties/oceanfront.png"
+    videoPoster: "../assets/images/properties/oceanfront.png",
+    videoFile: "../assets/videos/3616260749-preview.mp4",
+    interiorImage: "../assets/images/properties/apt_int.png",
+    exteriorImage: "../assets/images/properties/apt_ext.png"
   },
   {
     id: 6,
@@ -153,7 +168,10 @@ const propertiesData = [
     parking: "2 Cars",
     status: "Available",
     youtubeId: "SCw6ixhizg4",
-    videoPoster: "../assets/images/properties/pano_farm.png"
+    videoPoster: "../assets/images/properties/pano_farm.png",
+    videoFile: "../assets/videos/3895578139-preview.mp4",
+    interiorImage: "../assets/images/properties/interior.png",
+    exteriorImage: "../assets/images/properties/exterior.png"
   },
   {
     id: 7,
@@ -179,6 +197,9 @@ const propertiesData = [
     parking: "50+ Cars",
     status: "Available",
     youtubeId: "iJb8P2fD15E",
-    videoPoster: "../assets/images/properties/pano_office.png"
+    videoPoster: "../assets/images/properties/pano_office.png",
+    videoFile: "../assets/videos/4025111701-preview.mp4",
+    interiorImage: "../assets/images/properties/apt_int.png",
+    exteriorImage: "../assets/images/properties/office_ext.png"
   }
 ];
