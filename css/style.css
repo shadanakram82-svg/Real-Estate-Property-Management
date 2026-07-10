@@ -526,9 +526,9 @@ section:not(.hero),
   width: 100%;
   padding: 0.9rem 1.2rem;
   border-radius: 12px;
-  border: 1px solid var(--border-color);
-  background: var(--card-bg);
-  color: var(--text-color);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -655,9 +655,10 @@ select:not(.form-select) option {
 }
 
 .btn-search {
-  background-color: #fff;
-  color: var(--secondary-color);
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
   padding: 0 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
   font-weight: 600;
   font-size: 1rem;
