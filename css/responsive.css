@@ -1,0 +1,284 @@
+/* ========================================================================
+   EstateHub Responsive Design Strategy
+   ========================================================================
+   - Desktop & Laptop (1024px+): No changes, default desktop styles apply.
+   - Tablet (768px-1023px): 2-column grids, sidebar stacking, 991px Navbar.
+   - Large Mobile (576px-767px): 1-column grids, stacked forms/footer.
+   - Small Mobile (<576px): Typography tweaks, full width buttons, table scroll.
+   ======================================================================== */
+
+/* ------------------------------------------------------------------------
+   TABLET (768px - 1023px)
+   ------------------------------------------------------------------------ */
+@media (max-width: 1023px) {
+  /* --- Layout & Containers --- */
+  .container {
+    max-width: 100%;
+    padding: 0 1.5rem;
+  }
+  
+  .section-padding {
+    padding: 4rem 0;
+  }
+
+  /* --- Grid Conversions (3/4 Columns -> 2 Columns) --- */
+  .category-grid,
+  .property-grid,
+  .location-grid,
+  .agent-grid,
+  .properties-grid,
+  .favorites-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  /* --- Stacked Layouts (Sidebars, Forms, Dashboards) --- */
+  .details-layout,
+  .contact-layout,
+  .dashboard-layout,
+  .mortgage-layout,
+  .properties-layout {
+    grid-template-columns: 1fr !important;
+    gap: 2rem;
+  }
+
+  /* --- Hero & Search Form --- */
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-search-wrapper .search-form {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .btn-search {
+    grid-column: span 2;
+  }
+  
+  /* --- Images & Gallery --- */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .gallery-grid {
+    column-count: 2 !important;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   NAVBAR & HEADER (Below 992px)
+   ------------------------------------------------------------------------ */
+@media (max-width: 991px) {
+  .navbar-wrapper {
+    top: 1rem;
+  }
+  
+  .navbar {
+    width: 90%;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .nav-menu {
+    display: none; /* Hidden by default, toggled via JS */
+  }
+
+  /* When Hamburger Menu is Active */
+  .nav-menu.active {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    align-items: flex-start;
+    gap: 1.5rem;
+    z-index: 100;
+  }
+  
+  .dark-mode .nav-menu.active {
+    background: rgba(15, 23, 42, 0.98);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-brand {
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+
+  .nav-actions {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .nav-right {
+    gap: 1rem;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   LARGE MOBILE (576px - 767px)
+   ------------------------------------------------------------------------ */
+@media (max-width: 767px) {
+  /* --- Typography Adjustments --- */
+  .hero-title {
+    font-size: 2.8rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section-title h2 {
+    font-size: 2.2rem;
+  }
+  
+  .fav-hero h1 {
+    font-size: 2.8rem !important;
+  }
+
+  .fav-hero p {
+    font-size: 1.1rem !important;
+  }
+
+  .fav-hero .container {
+    padding: 3rem 1.5rem !important;
+  }
+
+  /* --- Grid Conversions (2 Columns -> 1 Column) --- */
+  .category-grid,
+  .property-grid,
+  .location-grid,
+  .agent-grid,
+  .properties-grid,
+  .favorites-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-search-wrapper .search-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .btn-search {
+    grid-column: span 1;
+  }
+
+  /* --- Gallery --- */
+  .gallery-grid {
+    column-count: 1 !important;
+  }
+
+  /* --- Footer --- */
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .newsletter-form {
+    flex-direction: column;
+  }
+
+  .newsletter-form button {
+    width: 100%;
+  }
+
+  /* --- Forms & Inputs --- */
+  .form-input, .form-select {
+    width: 100%;
+  }
+
+  /* --- Top Headers (Agents, Properties) --- */
+  .agents-header .container,
+  .properties-header .container {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+  
+  /* --- Miscellaneous --- */
+  .amenities-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ------------------------------------------------------------------------
+   SMALL MOBILE (Below 576px)
+   ------------------------------------------------------------------------ */
+@media (max-width: 575px) {
+  /* --- Typography Tweaks --- */
+  .hero-title {
+    font-size: 2.2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+  
+  .fav-hero h1 {
+    font-size: 2.2rem !important;
+  }
+
+  /* --- Spacing --- */
+  .section-padding {
+    padding: 3rem 0;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .hero-search-wrapper {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  /* --- Dashboard Stats --- */
+  .dashboard-stats {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* --- Buttons --- */
+  .btn-primary, .btn-outline {
+    width: 100%;
+    text-align: center;
+    min-height: 44px; /* Touch-friendly size */
+    justify-content: center;
+  }
+
+  /* Optionally hide non-critical navbar buttons on very small screens to save space */
+  .nav-right .btn-primary {
+    display: none; 
+  }
+
+  /* --- Horizontal Scroll for Tables --- */
+  /* Target any table container to prevent layout breaking */
+  .mortgage-results,
+  .amortization-table-container,
+  .history-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+  
+  table {
+    min-width: 600px; /* Keep table layout intact while allowing scroll */
+  }
+}
