@@ -198,6 +198,25 @@
     grid-column: span 1;
   }
 
+  /* --- Premium Statistics Card (Mobile) --- */
+  .stat-card {
+    background: linear-gradient(145deg, rgba(37, 99, 235, 0.05) 0%, rgba(37, 99, 235, 0.01) 100%) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(37, 99, 235, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.05) !important;
+  }
+  
+  [data-theme="dark"] .stat-card {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+  [data-theme="dark"] .stat-card h2.stat-number {
+    color: #ffffff !important;
+  }
+  [data-theme="dark"] .stat-card p {
+    color: #e2e8f0 !important;
+  }
+
   /* --- Gallery --- */
   .gallery-grid {
     column-count: 1 !important;
@@ -237,6 +256,18 @@
     width: 100%;
     margin: 0;
     border-radius: 30px;
+    background: var(--primary-color) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 1rem 1.5rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
+  }
+  
+  [data-theme="dark"] .cta-newsletter-form button {
+    background: #ffffff !important;
+    color: var(--primary-color) !important;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.15) !important;
   }
   
   .cta-wrapper {
