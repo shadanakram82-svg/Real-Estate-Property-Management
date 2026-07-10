@@ -385,14 +385,14 @@
             propsDiv.style.paddingTop = '1rem';
             propsDiv.style.borderTop = '1px solid var(--border-color)';
             
-            let html = '<h4 style="font-size:0.9rem; margin-bottom:0.8rem; color:var(--text-light); text-transform:uppercase; letter-spacing:1px;">Listed Properties</h4>';
-            html += '<ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:0.8rem;">';
+            let html = '<h4 class="agent-listed-title">Listed Properties</h4>';
+            html += '<ul class="agent-listed-props">';
             agentProps.forEach(p => {
-              html += '<li style="display:flex; align-items:center; gap:1rem;">';
-              html += '  <img src="' + p.image + '" style="width:50px; height:50px; border-radius:8px; object-fit:cover;" />';
-              html += '  <div style="flex:1;">';
-              html += '    <a href="details.html?id=' + p.id + '" style="text-decoration:none; color:var(--text-color); font-weight:600; font-size:0.95rem; display:block; transition:color 0.3s;" onmouseover="this.style.color=\'var(--accent-color)\'" onmouseout="this.style.color=\'var(--text-color)\'">' + p.title + '</a>';
-              html += '    <span style="color:var(--text-light); font-size:0.85rem;">' + p.price + '</span>';
+              html += '<li class="agent-listed-item">';
+              html += '  <img src="' + p.image + '" alt="' + p.title + '" />';
+              html += '  <div class="agent-listed-info">';
+              html += '    <a href="details.html?id=' + p.id + '">' + p.title + '</a>';
+              html += '    <span>' + p.price + '</span>';
               html += '  </div>';
               html += '</li>';
             });

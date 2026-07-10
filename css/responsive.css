@@ -349,14 +349,16 @@
     grid-template-columns: 1fr !important;
   }
 
-  /* --- Horizontal Scroll for Featured Properties on Home Page --- */
-  #featured-properties-grid {
+  /* --- Horizontal Scroll for Grids on Mobile --- */
+  #featured-properties-grid,
+  #favorites-grid,
+  .searches-grid {
     display: flex !important;
     overflow-x: auto !important;
     overflow-y: hidden !important; /* Ensure NO vertical scroll */
     scroll-snap-type: x mandatory;
     gap: 1.5rem;
-    padding-bottom: 3rem !important; /* Provide ample room for shadow and content */
+    padding-bottom: 2rem !important; /* Provide ample room for shadow and content */
     padding-top: 1rem !important;
     height: auto !important;
     align-items: stretch !important;
@@ -365,13 +367,19 @@
     -ms-overflow-style: none;
   }
 
-  #featured-properties-grid::-webkit-scrollbar {
+  #featured-properties-grid::-webkit-scrollbar,
+  #favorites-grid::-webkit-scrollbar,
+  .searches-grid::-webkit-scrollbar {
     display: none;
   }
-  
-  #featured-properties-grid .property-card {
-    flex: 0 0 85% !important;
-    scroll-snap-align: center !important; /* Center snap for better UX */
+
+  #featured-properties-grid > .property-card,
+  #favorites-grid > .property-card,
+  .searches-grid > .search-card {
+    flex: 0 0 280px !important;
+    max-width: 280px !important;
+    scroll-snap-align: start;
+    margin-bottom: 0 !important;
     height: max-content !important; /* Force card to fit all its content */
     min-height: min-content !important;
   }
@@ -488,9 +496,23 @@
     padding: 1.5rem;
   }
 
-  /* --- Dashboard Stats --- */
+  /* --- Dashboard Stats (Horizontal Scroll for Mobile) --- */
   .dashboard-stats {
-    grid-template-columns: 1fr !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    gap: 1rem !important;
+    padding-bottom: 1rem !important; /* space for scrollbar/shadows */
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+  }
+  .dashboard-stats::-webkit-scrollbar {
+    display: none;
+  }
+  .dashboard-stats > div {
+    flex: 0 0 135px !important;
+    scroll-snap-align: start;
+    width: 135px !important;
   }
 
   /* --- Buttons --- */

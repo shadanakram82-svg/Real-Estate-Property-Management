@@ -748,6 +748,11 @@
     flex-direction: column;
     gap: 2rem;
   }
+  .chart-container {
+    width: 250px;
+    height: 250px;
+    flex: none;
+  }
   .breakdown-bottom-stats {
     grid-template-columns: 1fr;
   }

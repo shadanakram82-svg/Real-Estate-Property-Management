@@ -286,6 +286,34 @@
       .fav-hero h1 { font-size: 2.2rem; }
       .searches-grid { grid-template-columns: 1fr; }
     }
-    @media (max-width: 480px) {
-      .dashboard-stats { grid-template-columns: 1fr; }
+    @media (max-width: 576px) {
+      .dashboard-stats { 
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 1rem;
+      }
+      .stat-card {
+        padding: 1rem;
+        min-height: 110px;
+        align-items: center;
+        text-align: center;
+      }
+      .stat-card-header {
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        gap: 0.5rem;
+      }
+      .stat-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+      }
+      .dash-stat-number {
+        font-size: 1.5rem;
+      }
+      .stat-label {
+        font-size: 0.8rem;
+        line-height: 1.2;
+      }
+      .stat-label br { display: none; } /* Remove line break on small boxes to save space */
     }

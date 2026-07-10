@@ -96,7 +96,11 @@
     }
     
     @media (max-width: 768px) {
-      .contact-layout { grid-template-columns: 1fr; }
+      .contact-layout { 
+        display: flex; 
+        flex-direction: column-reverse; 
+        gap: 2rem;
+      }
     }
 .hero-btn-group {
   display: flex;
@@ -322,6 +326,10 @@
   color: #8b5cf6;
 }
 
+.history-details {
+  flex: 1;
+  padding-right: 4.5rem; /* Prevents text from overlapping with absolute badge */
+}
 .history-details h4 {
   font-size: 1rem;
   font-weight: 600;
@@ -391,6 +399,33 @@
   background: linear-gradient(135deg, #1e3a8a, #3b82f6) !important;
   transform: translateY(0);
   box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
+}
+
+/* Mobile Layout Fixes */
+@media (max-width: 576px) {
+  .page-hero {
+    padding: 7rem 0 4rem;
+  }
+  .page-hero h1 {
+    font-size: 2.5rem;
+  }
+  .hero-btn-group {
+    flex-direction: row !important;
+    gap: 0.5rem !important;
+    padding: 0 !important;
+    width: 100%;
+  }
+  .hero-btn {
+    flex: 1;
+    width: auto !important; /* Override global 100% width */
+    padding: 0.6rem 0.5rem !important;
+    font-size: 0.85rem;
+    justify-content: center;
+  }
+  .contact-info, 
+  .contact-form-wrapper {
+    padding: 1.5rem;
+  }
 }
 
 /* Print Styles for PDF Download */
