@@ -396,6 +396,22 @@
     align-items: center;
   }
 
+  /* --- Testimonials Mobile Fixes --- */
+  .testimonial-overlay {
+    padding: 1.5rem 1rem !important;
+  }
+  
+  .testimonial-text {
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .testimonial-card {
+    height: auto !important;
+    min-height: 400px !important;
+  }
+
   /* --- Miscellaneous --- */
   .amenities-grid {
     grid-template-columns: 1fr !important;
