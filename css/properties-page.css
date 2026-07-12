@@ -85,7 +85,7 @@
       letter-spacing: 1px;
     }
     
-    .filter-item input, .filter-item select {
+    .filter-item input, .filter-item select, .filter-item .custom-select-trigger {
       width: 100%;
       padding: 0.9rem 1.2rem;
       border-radius: 12px;
@@ -98,7 +98,7 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
     
-    [data-theme="dark"] .filter-item input, [data-theme="dark"] .filter-item select {
+    [data-theme="dark"] .filter-item input, [data-theme="dark"] .filter-item select, [data-theme="dark"] .filter-item .custom-select-trigger {
       background: rgba(30, 41, 59, 0.9);
       color: #fff;
       border-color: rgba(255, 255, 255, 0.1);

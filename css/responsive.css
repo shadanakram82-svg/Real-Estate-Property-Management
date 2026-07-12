@@ -263,6 +263,11 @@
     font-weight: 600 !important;
     box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4) !important;
   }
+
+  .newsletter-form button::before,
+  .cta-newsletter-form button::before {
+    display: none !important;
+  }
   
   [data-theme="dark"] .cta-newsletter-form button {
     background: #ffffff !important;
@@ -469,6 +474,10 @@
     font-weight: 600 !important;
     letter-spacing: 0.5px;
     box-shadow: none !important;
+  }
+
+  #featured-section .btn-primary::before {
+    display: none !important;
   }
 
   /* --- Fix Property Amenities Layout on Mobile --- */
